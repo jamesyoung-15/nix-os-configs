@@ -1,5 +1,5 @@
 # My NixOS Configs
-My config files. Ongoing transitioning from Arch.
+My desktop (and later laptop) config files. Ongoing transitioning from Arch w/ KDE to NixOS w/ AwesomeWM.
 
 
 ## System Info
@@ -10,17 +10,23 @@ My config files. Ongoing transitioning from Arch.
 - Application Launcher: Rofi
 - File Manager: Thundar
 
-### List of Commonly Used Applications
+### My Other Commonly Used Applications
 - Video Player: VLC, MPV
 - Browser: Firefox, Librewolf, Ungoogle Chromium
 - Text-Editor: Kate
 - IDE: VSCode
 - PDF Viewer: Okular
 - Image Viewer: Gwenview
-- Multimedia: Jellyfin
-- Gaming: Steam, Lutris
-- Graphics: Blender, GIMP
+- Gaming
+  - Launchers: Steam, Lutris
+  - Emulators: Yuzu (Switch), Cemu (Wii)
+- Graphics: 
+  - 3D: Blender
+  - Photo Editing: GIMP
+  - Video Editing: KdenLive
 - ePub: Calibre
-- Note-taking: Joplin, R-Note (stylus), Drawio, Excalidraw
-- Video-editor: Kdenlive
+- Note-taking:
+  - General: Joplin
+  - Drawing: R-Note (stylus), Excalidraw
+  - Diagrams: DrawIO, Excalidraw
 - Printing: CUPS
