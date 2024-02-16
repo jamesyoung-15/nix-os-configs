@@ -4,11 +4,15 @@ My desktop (and later laptop) config files. Ongoing transitioning from Arch w/ K
 
 ## System Info
 - OS: NixOS
+- Desktop Environment (Undecided whether to use DE or not): XFCE
 - Window Manager: AwesomeWM
 - Shell: Bash
 - Terminal: kitty
 - Application Launcher: Rofi
 - File Manager: Thundar
+- Topbar: Not decided (Options Below)
+  - Polybar
+  - Wibar
 
 ### My Other Commonly Used Applications
 - Video Player: VLC, MPV
