@@ -12,7 +12,7 @@ theme.wallpaper = themes_path .. "zenburn/zenburn-background.png"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "sans 8"
+theme.font      = "roboto 8"
 
 -- {{{ Colors
 theme.fg_normal  = "#DCDCCC"
@@ -73,8 +73,8 @@ theme.menu_width  = dpi(100)
 
 -- {{{ Icons
 -- {{{ Taglist
-theme.taglist_squares_sel   = themes_path .. "zenburn/taglist/squarefz.png"
-theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
+-- theme.taglist_squares_sel   = themes_path .. "zenburn/taglist/squarefz.png"
+-- theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
 --theme.taglist_squares_resize = "false"
 -- }}}
 

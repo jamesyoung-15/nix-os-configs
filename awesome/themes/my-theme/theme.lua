@@ -1,26 +1,17 @@
 ---------------------------
--- Default awesome theme --
+-- James' awesome theme --
 ---------------------------
 
 
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
-
-
-local theme_assets = require("beautiful.theme_assets")
-local xresources = require("beautiful.xresources")
-local rnotification = require("ruled.notification")
-local dpi = xresources.apply_dpi
-
-local gfs = require("gears.filesystem")
-local themes_path = gfs.get_themes_dir()
+local themes_path = require("gears.filesystem").get_themes_dir()
+local dpi = require("beautiful.xresources").apply_dpi
 
 local theme = {}
+theme.wallpaper = themes_path.."my-theme/city-wallpaper.jpg"
 
-local icon_path = "~/.config/awesome/icons/"
 
-theme.font          = "Roboto Medium 10"
+theme.font          = "Roboto Medium 9"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
@@ -79,36 +70,9 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
--- theme.titlebar_close_button_normal = icon_path.."close.svg"
--- theme.titlebar_close_button_focus  = icon_path.."close_unfocused_prelight.svg"
--- beautiful.titlebar_close_button_focus_hover = icon_path.."close_focused_prelight.svg"
+theme.titlebar_close_button_normal = themes_path.."my-theme/icons/close_normal.png"
+theme.titlebar_close_button_focus  = themes_path.."my-theme/icons/close_focus.png"
 
-theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
-
-theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
-
-theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
-
-theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
-
-theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
-
-theme.wallpaper = themes_path.."default/background.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
@@ -137,14 +101,5 @@ theme.awesome_icon = theme_assets.awesome_icon(
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
--- Set different colors for urgent notifications.
-rnotification.connect_signal('request::rules', function()
-    rnotification.append_rule {
-        rule       = { urgency = 'critical' },
-        properties = { bg = '#ff0000', fg = '#ffffff' }
-    }
-end)
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

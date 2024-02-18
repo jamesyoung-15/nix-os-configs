@@ -7,11 +7,11 @@ My desktop (and later laptop) config files. Ongoing transitioning from Arch + KD
 See workflow demo [here](#demo).
 
 ## System Info
-- OS: NixOS
-- Window Manager: AwesomeWM ([XFCE as Desktop Manager](https://nixos.wiki/wiki/Xfce#Using_as_a_desktop_manager_and_not_a_window_manager))
+- OS: [NixOS](https://nixos.org/)
+- Window Manager: [AwesomeWM](https://awesomewm.org/)
 - Shell: Bash
 - Terminal: [kitty](https://github.com/kovidgoyal/kitty)
-- Application Launcher: Rofi
+- Application Launcher: [Rofi](https://github.com/davatorium/rofi)
 - File Manager: [Thundar](https://nixos.wiki/wiki/Thunar)
 - Topbar: [Wibar](https://awesomewm.org/doc/api/classes/awful.wibar.html)
 - GTK Themes: [Catppuccin GTK](https://github.com/catppuccin/gtk)
@@ -19,7 +19,10 @@ See workflow demo [here](#demo).
 
 
 ## System Setup
-The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
+The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`. The NixOS config `nixos/configuration.nix` goes in `/etc/nixos/configruation.nix`, but can also be changed.
+
+## Demo
+![](./assets/demo.gif)
 
 ## Application List
 ### My Other Commonly Used Applications (GUI)
@@ -51,7 +54,8 @@ The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
 - neofetch (display system info)
 - tldr (simplify man pages)
 - tmux (terminal multiplexer)
-- xdotool (automate key presses, useful in scripts eg. see my automatic playing MarioKart64 in my deep reinforcement learning project [DeepKart64](https://github.com/jamesyoung-15/DeepQLKart64/))
+- xdotool (automate key presses)
+<!-- - useful in scripts eg. see my automatic playing MarioKart64 in my deep reinforcement learning project [DeepKart64](https://github.com/jamesyoung-15/DeepQLKart64/) -->
 - htop (top but a little nicer)
 - yt-dlp (CLI youtube audio/video downloader, super useful)
 - vim 
@@ -64,6 +68,3 @@ The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
   - Improve and style topbar
   - Maybe add bottom dock
   - Personalize behaviour more in general
-
-## Demo
-![](./assets/demo.gif)

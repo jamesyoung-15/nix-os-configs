@@ -218,7 +218,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            -- mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -361,8 +361,8 @@ globalkeys = gears.table.join(
             if t == nil then
                 return
             end
-            -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
-            local tag = client.focus.screen.tags[(t.name - 2) % 9 + 1]
+            -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 6)
+            local tag = client.focus.screen.tags[(t.name - 2) % 6 + 1]
             awful.client.movetotag(tag)
             -- iterate backwards to focus on primary screen
             for i = screen.count(), 1, -1 do
@@ -378,8 +378,8 @@ globalkeys = gears.table.join(
             if t == nil then
                 return
             end
-            -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
-            local tag = client.focus.screen.tags[(t.name % 9) + 1]
+            -- get next tag (modulo 9 excluding 0 to wrap from 6 to 1)
+            local tag = client.focus.screen.tags[(t.name % 6) + 1]
             awful.client.movetotag(tag)
             -- iterate backwards to focus on primary screen
             for i = screen.count(), 1, -1 do
@@ -460,9 +460,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "e", function() awful.util.spawn('rofi -modi emoji -show emoji -kb-custom-1 Ctrl+c') end,
               {description = "run rofi emoji launcher", group = "launcher"}),
 
-    -- Librewolf
-    awful.key({ modkey }, "b", function() awful.util.spawn('librewolf') end,
-              {description = "launch librewolf", group = "launcher"}),
+    -- Launch Browser 
+    awful.key({ modkey }, "b", function() awful.util.spawn('firefox') end,
+              {description = "launch firefox", group = "launcher"}),
 
     -- Launch Terminal (Own Shortcut)
     awful.key({ modkey }, "t", function() awful.util.spawn(terminal) end,
@@ -751,8 +751,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart Applications
 awful.spawn("picom")
 awful.spawn("autorandr")
+awful.spawn("qlipper")
 awful.spawn("lxpolkit")
 awful.spawn("nm-applet")
-awful.spawn("librewolf")
+awful.spawn("firefox")
 awful.spawn("xbindkeys")
 awful.spawn("nitrogen --restore")

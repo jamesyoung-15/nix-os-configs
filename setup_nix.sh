@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-sudo cp ./nixos/configuration.nix /etc/nixos/configuration.nix
+# quick script for testing
+sudo cp ./nixos/configuration.nix /etc/nixos/configuration.nix && sudo nixos-rebuild switch

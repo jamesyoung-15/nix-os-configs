@@ -69,7 +69,7 @@
   users.users.jamesyoung = {
     isNormalUser = true;
     description = "James Young";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
   };
 
@@ -83,8 +83,18 @@
   programs.bash = {
     interactiveShellInit = "neofetch";
     shellAliases = {
-
+      playbongocatgif = "librewolf https://media.tenor.com/fYg91qBpDdgAAAAi/bongo-cat-transparent.gif";
     };
+  };
+
+  # keyboard
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+      libpinyin
+      uniemoji
+        
+    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -104,11 +114,14 @@
     pkgs.neofetch
     pkgs.xdotool
     pkgs.xbindkeys
-    pkgs.xclip
+    # pkgs.xclip
     pkgs.killall
     # pkgs.xfce.xfce4-clipman-plugin
-    pkgs.clipboard-jh
+    # pkgs.clipboard-jh
+    pkgs.lxqt.qlipper
+    # pkgs.wl-clipboard-x11
     
+
 
     # terminal
     pkgs.kitty
@@ -157,11 +170,16 @@
     pkgs.gif-for-cli
     pkgs.imagemagick
     pkgs.playerctl
+    pkgs.yt-dlp
+    pkgs.htop
+    pkgs.btop
 
     # gui utilities
     pkgs.libsForQt5.kdeconnect-kde
     pkgs.gnome.gnome-disk-utility
     pkgs.lxde.lxsession
+    pkgs.piper
+    pkgs.libsForQt5.ark
 
     # screenshot, webcam, etc.
     pkgs.libsForQt5.spectacle
@@ -200,9 +218,14 @@
 
     # applets
     pkgs.networkmanagerapplet
+    pkgs.volumeicon
+    pkgs.volctl
+    pkgs.pasystray
+    pkgs.mictray
+    pkgs.gxkb
 
     # top bar
-    pkgs.polybarFull
+    # pkgs.polybarFull
 
 
     # Games
@@ -210,6 +233,10 @@
     pkgs.yuzu
     pkgs.runelite
     pkgs.retroarch
+
+    # Game Tools
+    pkgs.mangohud
+    pkgs.goverlay
 
     # Programming Languages
     pkgs.jdk
@@ -262,12 +289,12 @@
 
   # QT Theming
   qt.enable = true;
+  qt.platformTheme = "qt5ct";
   # qt.platformTheme = "gtk2";
   # qt.platformTheme = "gnome";
   # qt.style = "breeze";
   # qt.platformTheme = "kde"; # don't use kde, causes QSystemTrayIcon::setVisible: No Icon set
   # qt.platformTheme = "lxqt";
-  qt.platformTheme = "qt5ct";
   # environment.variables = {
   #       # This will become a global environment variable
   #      "QT_STYLE_OVERRIDE"="kvantum";
@@ -299,6 +326,13 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
+  # enable docker
+  virtualisation.docker.enable = true;
+
+  # enable virt-manager
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -318,10 +352,32 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  networking.firewall = { 
+    enable = false;
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+  };  
+
+  # Enable Pipewire (audio server)
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+  };
+
   # enable bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  # services.blueman.enable = true;
+  services.blueman.enable = true;
 
   # pipewire bluetooth support
   environment.etc = {
@@ -356,17 +412,7 @@
   # Enable Flatpak
   services.flatpak.enable = true;
 
-  # Enable Pipewire
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
