@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "JamesDesktop"; # Define your hostname.
+  networking.hostName = "JamesNixDesktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -33,25 +33,28 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
-   
+
+    # Enable XFCE (using as desktop manager but not as window manager, ie. install XFCE utilities for easier use) 
+    # see here: (https://nixos.wiki/wiki/Xfce#Using_as_a_desktop_manager_and_not_a_window_manager)
     desktopManager = {
       xterm.enable = false;
       xfce = {
         enable = true;
-        # noDesktop = true;
-        # enableXfwm = false;
+        # if using window manager, should use below two options
+        noDesktop = true;
+        enableXfwm = false;
       };
     };
-    
-    # using sddm
+
+    # Enable SDDM
     displayManager = {
       sddm.enable = true;
-      defaultSession = "xfce";
+      defaultSession = "xfce+awesome";
     };
 
-    # enable awesomewm
+    # Enable AwesomeWM
     windowManager.awesome = {
-      enable = false;
+      enable = true;
       luaModules = with pkgs.luaPackages; [
         luarocks # is the package manager for Lua modules
         luadbi-mysql # Database abstraction layer
@@ -73,50 +76,150 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
+  # Change default editor from nano to neovim
+  environment.variables.EDITOR = "neovim";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # general dev utils
+
+    # General dev utils
     curl
     git
     wget
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     pkgs.xclip
-    # others
-    # pkgs.rofi
+    pkgs.tldr
+    pkgs.neofetch
+    pkgs.xdotool
+    pkgs.xbindkeys
+    pkgs.pulseaudio
+    pkgs.tmux
+
+    # terminal
+    pkgs.kitty
+    pkgs.libsForQt5.konsole
+    pkgs.alacritty
+    
+
+    # bluetooth
+    pkgs.bluez
+
+    # audio
+    pkgs.pavucontrol
+
+    # app launcher
     (rofi.override { plugins = [ rofi-emoji ]; })
+
+    # display packages
     pkgs.picom
     pkgs.nitrogen
     pkgs.arandr
+    pkgs.autorandr
+
+    # editors
     pkgs.neovim
-    pkgs.tldr
-    pkgs.neofetch
-    pkgs.kitty
+    pkgs.vscode
+    pkgs.libsForQt5.kate
+
+    # media players
     pkgs.vlc
     pkgs.mpv
+
+    # browsers
     pkgs.firefox-bin
     pkgs.librewolf
     pkgs.ungoogled-chromium
-    pkgs.xfce.thunar
-    pkgs.vscode
-    pkgs.libsForQt5.kate
+
+    # file managers
+    # pkgs.xfce.thunar
+
+    # utilities
     pkgs.libsForQt5.kdeconnect-kde
-    pkgs.pavucontrol
+    pkgs.gnome.gnome-disk-utility
+    pkgs.lxde.lxsession
+    pkgs.feh
+
+    # gtk config
     pkgs.lxappearance
+    libsForQt5.qtstyleplugin-kvantum
+    pkgs.libsForQt5.qt5ct
+
+    # gtk and qt themes
     (pkgs.catppuccin-kde.override { accents = ["lavender"]; flavour  = ["mocha"]; winDecStyles = ["modern"]; })
     (pkgs.catppuccin-gtk.override { accents = ["lavender"]; variant = "mocha"; size = "standard";  })
+    pkgs.catppuccin-kvantum
+    pkgs.dracula-theme
+    pkgs.lightly-qt
+    pkgs.libsForQt5.breeze-qt5
+    pkgs.qt6Packages.qt6ct
+
+    # cursors, icons, etc.
     pkgs.catppuccin-cursors
     pkgs.papirus-icon-theme
+    (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula"]; })
     pkgs.capitaine-cursors
-    libsForQt5.qtstyleplugin-kvantum
-    # pkgs.autorandr
+
+
+    # sddm customization
+    pkgs.libsForQt5.sddm-kcm
+    pkgs.libsForQt5.qt5.qtgraphicaleffects
+    pkgs.libsForQt5.qt5.qtsvg
+    pkgs.libsForQt5.qt5.qtquickcontrols2
+
+    # applets
+    pkgs.networkmanagerapplet
+
+    # top bar
+    pkgs.polybarFull
+
+
+    # Games
+    pkgs.cemu
+    pkgs.yuzu
+    pkgs.runelite
+    pkgs.retroarch
+
+    # Programming Languages
+    pkgs.jdk
+    pkgs.rustc
+    pkgs.go
+    pkgs.nodePackages_latest.nodejs
+
+    # epub
+    pkgs.calibre
+    pkgs.calibre-web
+
+    # office
+    pkgs.libsForQt5.okular
+    pkgs.onlyoffice-bin
+    # pkgs.libreoffice-bin
+
+    # note-taking, diagrams, etc.
+    pkgs.joplin-desktop
+    pkgs.drawio
+    pkgs.rnote
+
+    # graphics
+    pkgs.blender
+    pkgs.libresprite
+    pkgs.libsForQt5.kdenlive
+    pkgs.glaxnimate
+    pkgs.libsForQt5.gwenview
+    pkgs.obs-studio
+
+
+
   ];
-  nixpkgs.config.qt5 = {
-    enable = true;
-    platformTheme = "gtk2"; 
-  };
-  environment.variables.QT_QPA_PLATFORMTHEME = "gtk2";
+
+  # file mounting permissions
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
+  # QT Theming with KDE system settings
+  qt.enable = true;
+  qt.platformTheme = "kde";
 
   # Fonts
   fonts.fontconfig.enable = true;
@@ -133,6 +236,15 @@
     roboto
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Hack" ]; })
   ];
+
+
+  # Steam Setup
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -165,7 +277,7 @@
 
   };
   # xdg.portal.enable = true;
-  
+
 
   # Enable Flatpak
   services.flatpak.enable = true;

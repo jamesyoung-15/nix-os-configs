@@ -1,23 +1,26 @@
 # My NixOS Configs
-My desktop (and later laptop) config files. Ongoing transitioning from Arch w/ KDE to NixOS w/ AwesomeWM.
+My desktop (and later laptop) config files. Ongoing transitioning from Arch + KDE (see old configs [here]()) to NixOS + AwesomeWM.
 
+## Preview
+Todo
 
 ## System Info
 - OS: NixOS
-- Desktop Environment (Undecided whether to use DE or not): XFCE
-- Window Manager: AwesomeWM
+- Window Manager: AwesomeWM ([XFCE as Desktop Manager](https://nixos.wiki/wiki/Xfce#Using_as_a_desktop_manager_and_not_a_window_manager))
 - Shell: Bash
-- Terminal: kitty
+- Terminal: [kitty](https://github.com/kovidgoyal/kitty)
 - Application Launcher: Rofi
-- File Manager: Thundar
-- Topbar: Not decided (Options Below)
-  - Polybar
-  - Wibar
+- File Manager: [Thundar]()
+- Topbar: [Wibar]()
+- GTK Themes: [Catppuccin GTK]()
+- QT Themes: []()
 
-### My Other Commonly Used Applications
+### My Other Commonly Used Applications (GUI)
+- GTK Themes Editing: lxappearance
+- QT Themes Editing: KDE settings
 - Video Player: VLC, MPV
-- Browser: Firefox, Librewolf, Ungoogle Chromium
-- Text-Editor: Kate
+- Browsers: Librewolf, Ungoogle Chromium
+- Text-Editors: Kate, NVIM
 - IDE: VSCode
 - PDF Viewer: Okular
 - Image Viewer: Gwenview
@@ -34,3 +37,22 @@ My desktop (and later laptop) config files. Ongoing transitioning from Arch w/ K
   - Drawing: R-Note (stylus), Excalidraw
   - Diagrams: DrawIO, Excalidraw
 - Printing: CUPS
+- USB flashing: Balena Etcher
+
+### Some Extra CLI Applications I use
+- neofetch (display system info)
+- tldr (simplify man pages)
+- tmux (terminal multiplexer)
+- xdotool (automate key presses, useful in scripts eg. see my automatic playing MarioKart64 in my deep reinforcement learning project [DeepKart64](https://github.com/jamesyoung-15/DeepQLKart64/))
+- htop (top but a little nicer)
+- yt-dlp (CLI youtube audio/video downloader, super useful)
+- vim 
+- neovim
+
+## Next Steps
+- Familiarize using Window Manager instead of DE (tiling, using keyboard more than mouse, etc.)
+- Modularize NixOS config file instead of one large config file
+- Improve AwesomeWM configs
+  - Improve and style topbar
+  - Maybe add bottom dock
+  - Personalize behaviour more in general

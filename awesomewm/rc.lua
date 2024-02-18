@@ -1,3 +1,4 @@
+ 
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -166,7 +167,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    set_wallpaper(s)
+    -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6" }, s, awful.layout.layouts[1])
@@ -327,19 +328,21 @@ globalkeys = gears.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
-    -- Rofi 
+    -- Rofi
     awful.key({ modkey }, "r", function() awful.util.spawn('rofi -show drun') end,
               {description = "run rofi launcher", group = "launcher"}),
-    
-    
+
+    awful.key({ modkey, "Control" }, "e", function() awful.util.spawn('rofi -modi emoji -show emoji -kb-custom-1 Ctrl+c') end,
+              {description = "run rofi emoji launcher", group = "launcher"}),
+
     -- Librewolf
     awful.key({ modkey }, "b", function() awful.util.spawn('librewolf') end,
               {description = "launch librewolf", group = "launcher"}),
-    
+
     -- Launch Terminal (Own Shortcut)
     awful.key({ modkey }, "t", function() awful.util.spawn(terminal) end,
               {description = "launch kitty terminal", group = "launcher"}),
-    
+
     -- Launch file manager (thunar)
     awful.key({ modkey }, "e", function() awful.util.spawn('thunar') end,
               {description = "launch file manager (thunar)", group = "launcher"})
@@ -578,3 +581,12 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
+-- Autostart Applications
+awful.spawn("picom")
+awful.spawn("autorandr")
+awful.spawn("lxpolkit")
+awful.spawn("librewolf")
+awful.spawn("xbindkeys")
+awful.spawn("nitrogen --restore")
