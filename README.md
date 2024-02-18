@@ -10,11 +10,24 @@ Todo
 - Shell: Bash
 - Terminal: [kitty](https://github.com/kovidgoyal/kitty)
 - Application Launcher: Rofi
-- File Manager: [Thundar]()
-- Topbar: [Wibar]()
-- GTK Themes: [Catppuccin GTK]()
-- QT Themes: []()
+- File Manager: [Thundar](https://nixos.wiki/wiki/Thunar)
+- Topbar: [Wibar](https://awesomewm.org/doc/api/classes/awful.wibar.html)
+- GTK Themes: [Catppuccin GTK](https://github.com/catppuccin/gtk)
+- Plasma Themes:
+    - Global Theme: Dracula
+    - Colors: Catppuccin Mocha Mauve
+    - Plasma Style: ChromeOS
+    - Application Style: Breeze
+    - Window Decorations: Scratchy
+    - Fonts: Mono Nerd Font Mono 10 pt
+    - Icons: Tela Circle Dark
+    - Cursor: Dracula Cursor
 
+
+## System Setup
+Todo
+
+## Application List
 ### My Other Commonly Used Applications (GUI)
 - GTK Themes Editing: lxappearance
 - QT Themes Editing: KDE settings
