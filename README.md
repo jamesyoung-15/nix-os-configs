@@ -2,7 +2,9 @@
 My desktop (and later laptop) config files. Ongoing transitioning from Arch + KDE (see old configs [here]()) to NixOS + AwesomeWM.
 
 ## Preview
-Todo
+![](./assets/20240218-DesktopScreen.png)
+
+See workflow demo [here](#demo).
 
 ## System Info
 - OS: NixOS
@@ -13,19 +15,11 @@ Todo
 - File Manager: [Thundar](https://nixos.wiki/wiki/Thunar)
 - Topbar: [Wibar](https://awesomewm.org/doc/api/classes/awful.wibar.html)
 - GTK Themes: [Catppuccin GTK](https://github.com/catppuccin/gtk)
-- Plasma Themes:
-    - Global Theme: Dracula
-    - Colors: Catppuccin Mocha Mauve
-    - Plasma Style: ChromeOS
-    - Application Style: Breeze
-    - Window Decorations: Scratchy
-    - Fonts: Mono Nerd Font Mono 10 pt
-    - Icons: Tela Circle Dark
-    - Cursor: Dracula Cursor
+- QT Theme: [Catppuccin qt5ct](https://github.com/catppuccin/qt5ct)
 
 
 ## System Setup
-Todo
+The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
 
 ## Application List
 ### My Other Commonly Used Applications (GUI)
@@ -53,6 +47,7 @@ Todo
 - USB flashing: Balena Etcher
 
 ### Some Extra CLI Applications I use
+- tree
 - neofetch (display system info)
 - tldr (simplify man pages)
 - tmux (terminal multiplexer)
@@ -69,3 +64,6 @@ Todo
   - Improve and style topbar
   - Maybe add bottom dock
   - Personalize behaviour more in general
+
+## Demo
+![](./assets/demo.gif)

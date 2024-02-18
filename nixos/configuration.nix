@@ -48,7 +48,7 @@
 
     # Enable SDDM
     displayManager = {
-      sddm.enable = true;
+      gdm.enable = true;
       defaultSession = "xfce+awesome";
     };
 
@@ -79,6 +79,14 @@
   # Change default editor from nano to neovim
   environment.variables.EDITOR = "neovim";
 
+  # bash setup
+  programs.bash = {
+    interactiveShellInit = "neofetch";
+    shellAliases = {
+
+    };
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -88,13 +96,19 @@
     git
     wget
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    pkgs.xclip
     pkgs.tldr
+    pkgs.tmux
+    pkgs.tree
+    
+    # system utils
     pkgs.neofetch
     pkgs.xdotool
     pkgs.xbindkeys
-    pkgs.pulseaudio
-    pkgs.tmux
+    pkgs.xclip
+    pkgs.killall
+    # pkgs.xfce.xfce4-clipman-plugin
+    pkgs.clipboard-jh
+    
 
     # terminal
     pkgs.kitty
@@ -104,8 +118,10 @@
 
     # bluetooth
     pkgs.bluez
+    pkgs.libsForQt5.bluedevil
 
     # audio
+    pkgs.pulseaudio
     pkgs.pavucontrol
 
     # app launcher
@@ -125,6 +141,8 @@
     # media players
     pkgs.vlc
     pkgs.mpv
+    pkgs.clementine
+    pkgs.libvlc
 
     # browsers
     pkgs.firefox-bin
@@ -134,11 +152,22 @@
     # file managers
     # pkgs.xfce.thunar
 
-    # utilities
+    # cli utilities
+    pkgs.feh
+    pkgs.gif-for-cli
+    pkgs.imagemagick
+    pkgs.playerctl
+
+    # gui utilities
     pkgs.libsForQt5.kdeconnect-kde
     pkgs.gnome.gnome-disk-utility
     pkgs.lxde.lxsession
-    pkgs.feh
+
+    # screenshot, webcam, etc.
+    pkgs.libsForQt5.spectacle
+    pkgs.gnome.cheese
+    pkgs.ksnip
+    pkgs.CuboCore.coreshot
 
     # gtk config
     pkgs.lxappearance
@@ -153,6 +182,7 @@
     pkgs.lightly-qt
     pkgs.libsForQt5.breeze-qt5
     pkgs.qt6Packages.qt6ct
+    # pkgs.libsForQt5.systemsettings # kde system settings
 
     # cursors, icons, etc.
     pkgs.catppuccin-cursors
@@ -165,6 +195,7 @@
     pkgs.libsForQt5.sddm-kcm
     pkgs.libsForQt5.qt5.qtgraphicaleffects
     pkgs.libsForQt5.qt5.qtsvg
+    pkgs.qt6.qtsvg
     pkgs.libsForQt5.qt5.qtquickcontrols2
 
     # applets
@@ -207,19 +238,41 @@
     pkgs.glaxnimate
     pkgs.libsForQt5.gwenview
     pkgs.obs-studio
+    (pkgs.wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+      ];
+    })
+    pkgs.gimp-with-plugins
+    
 
 
 
   ];
+
+  # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
+  programs.dconf.enable = true;
 
   # file mounting permissions
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
-  # QT Theming with KDE system settings
+  # QT Theming
   qt.enable = true;
-  qt.platformTheme = "kde";
+  # qt.platformTheme = "gtk2";
+  # qt.platformTheme = "gnome";
+  # qt.style = "breeze";
+  # qt.platformTheme = "kde"; # don't use kde, causes QSystemTrayIcon::setVisible: No Icon set
+  # qt.platformTheme = "lxqt";
+  qt.platformTheme = "qt5ct";
+  # environment.variables = {
+  #       # This will become a global environment variable
+  #      "QT_STYLE_OVERRIDE"="kvantum";
+  # };
+
 
   # Fonts
   fonts.fontconfig.enable = true;
@@ -234,7 +287,8 @@
     dina-font
     proggyfonts
     roboto
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Hack" ]; })
+    nerdfonts
+    # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Hack" ]; })
   ];
 
 
@@ -264,6 +318,26 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # enable bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  # services.blueman.enable = true;
+
+  # pipewire bluetooth support
+  environment.etc = {
+    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+        ["bluez5.enable-hw-volume"] = true,
+        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+      }
+    '';
+  };
+
+
+  # enable gnome keyring
+  services.gnome.gnome-keyring.enable = true;
 
   # Enable XDG Portal
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
