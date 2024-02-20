@@ -30,6 +30,11 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_HK.UTF-8";
 
+  # enable nix command and flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+
+
   # Configure keymap in X11
   services.xserver = {
     enable = true;
@@ -48,7 +53,12 @@
 
     # Enable SDDM
     displayManager = {
-      gdm.enable = true;
+      lightdm.enable = true;
+      lightdm.greeters.gtk.enable = true;
+      lightdm.greeters.gtk.theme.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
+      lightdm.greeters.gtk.iconTheme.name = "Papirus";
+      lightdm.greeters.gtk.cursorTheme.name = "Capitaine";
+      lightdm.background = /home/jamesyoung/Pictures/Wallpapers/PurpleMoon-Wallpaper.jpg;
       defaultSession = "xfce+awesome";
     };
 
@@ -114,12 +124,32 @@
     pkgs.neofetch
     pkgs.xdotool
     pkgs.xbindkeys
-    # pkgs.xclip
     pkgs.killall
+    # pkgs.xclip
     # pkgs.xfce.xfce4-clipman-plugin
     # pkgs.clipboard-jh
-    pkgs.lxqt.qlipper
-    # pkgs.wl-clipboard-x11
+    # pkgs.lxqt.qlipper
+    pkgs.parcellite
+    # pkgs.copyq
+    pkgs.findutils
+
+    # cli utilities
+    pkgs.feh
+    pkgs.gif-for-cli
+    pkgs.imagemagick
+    pkgs.playerctl
+    pkgs.yt-dlp
+    pkgs.htop
+    pkgs.btop
+
+    # gui utilities
+    pkgs.libsForQt5.kdeconnect-kde
+    pkgs.gnome.gnome-disk-utility
+    pkgs.lxde.lxsession
+    pkgs.piper
+    pkgs.libsForQt5.ark
+    pkgs.keepassxc
+    pkgs.gnome.gnome-settings-daemon43
     
 
 
@@ -165,21 +195,6 @@
     # file managers
     # pkgs.xfce.thunar
 
-    # cli utilities
-    pkgs.feh
-    pkgs.gif-for-cli
-    pkgs.imagemagick
-    pkgs.playerctl
-    pkgs.yt-dlp
-    pkgs.htop
-    pkgs.btop
-
-    # gui utilities
-    pkgs.libsForQt5.kdeconnect-kde
-    pkgs.gnome.gnome-disk-utility
-    pkgs.lxde.lxsession
-    pkgs.piper
-    pkgs.libsForQt5.ark
 
     # screenshot, webcam, etc.
     pkgs.libsForQt5.spectacle
@@ -215,6 +230,7 @@
     pkgs.libsForQt5.qt5.qtsvg
     pkgs.qt6.qtsvg
     pkgs.libsForQt5.qt5.qtquickcontrols2
+    pkgs.catppuccin-sddm-corners
 
     # applets
     pkgs.networkmanagerapplet

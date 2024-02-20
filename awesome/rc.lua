@@ -52,7 +52,7 @@ beautiful.init(awful.util.getdir("config") .. "themes/zenburn/theme.lua" )
 beautiful.useless_gap = 1
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
+terminal = "konsole"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -144,7 +144,7 @@ local tasklist_buttons = gears.table.join(
                                               end
                                           end),
                      awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
+                                              awful.menu.client_list({ theme = { width = 50 } })
                                           end),
                      awful.button({ }, 4, function ()
                                               awful.client.focus.byidx(1)
@@ -214,13 +214,20 @@ awful.screen.connect_for_each_screen(function(s)
             mylauncher,
             s.mytaglist,
             s.mypromptbox,
+            s.mytasklist,
         },
-        s.mytasklist, -- Middle widget
+        {-- Middle widget
+            mytextclock,
+            valign = "center",
+            halign = "center",
+            layout = wibox.container.place,
+        },
+        -- s.mytasklist,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
             wibox.widget.systray(),
-            mytextclock,
+            -- mytextclock,
             s.mylayoutbox,
         },
     }
@@ -466,7 +473,7 @@ globalkeys = gears.table.join(
 
     -- Launch Terminal (Own Shortcut)
     awful.key({ modkey }, "t", function() awful.util.spawn(terminal) end,
-              {description = "launch kitty terminal", group = "launcher"}),
+              {description = "launch default terminal", group = "launcher"}),
 
     -- Launch file manager (thunar)
     awful.key({ modkey }, "e", function() awful.util.spawn('thunar') end,
@@ -751,7 +758,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart Applications
 awful.spawn("picom")
 awful.spawn("autorandr")
-awful.spawn("qlipper")
+awful.spawn("copyq")
 awful.spawn("lxpolkit")
 awful.spawn("nm-applet")
 awful.spawn("firefox")

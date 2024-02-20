@@ -47,6 +47,12 @@ theme.titlebar_bg_normal = "#3F3F3F"
 --theme.taglist_bg_focus = "#CC9393"
 -- }}}
 
+-- {{{ Tasklist
+-- disable task name
+theme.tasklist_disable_task_name = true
+
+-- }}}
+
 -- {{{ Widgets
 -- You can add as many variables as
 -- you wish and access them by using
