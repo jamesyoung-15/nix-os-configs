@@ -132,6 +132,7 @@
     pkgs.parcellite
     # pkgs.copyq
     pkgs.findutils
+    pkgs.starship
 
     # cli utilities
     pkgs.feh
