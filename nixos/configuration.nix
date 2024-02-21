@@ -91,7 +91,11 @@
 
   # bash setup
   programs.bash = {
-    interactiveShellInit = "neofetch";
+    interactiveShellInit = 
+      ''
+      neofetch
+      eval "$(starship init bash)"
+      '';
     shellAliases = {
       playbongocatgif = "librewolf https://media.tenor.com/fYg91qBpDdgAAAAi/bongo-cat-transparent.gif";
     };
