@@ -1,5 +1,5 @@
 # My NixOS Configs
-My desktop (and later laptop) config files. Ongoing transitioning from Arch + KDE (see old configs [here]()) to NixOS + AwesomeWM.
+My desktop (and later laptop) config files. Ongoing transitioning from Arch + KDE (see old configs [here](https://github.com/jamesyoung-15/arch-kde-configs)) to NixOS + AwesomeWM.
 
 ## Preview
 ![](./assets/20240221_NixDesktop.png)
@@ -55,10 +55,8 @@ The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
 - tldr (simplify man pages)
 - tmux (terminal multiplexer)
 - xdotool (automate key presses)
-<!-- - useful in scripts eg. see my automatic playing MarioKart64 in my deep reinforcement learning project [DeepKart64](https://github.com/jamesyoung-15/DeepQLKart64/) -->
 - htop (top but a little nicer)
 - yt-dlp (CLI youtube audio/video downloader, super useful)
-- vim 
 - neovim
 
 ## Next Steps
