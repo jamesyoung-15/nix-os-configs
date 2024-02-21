@@ -141,6 +141,9 @@
     pkgs.yt-dlp
     pkgs.htop
     pkgs.btop
+    pkgs.mediainfo
+    pkgs.busybox
+    pkgs.zip
 
     # gui utilities
     pkgs.libsForQt5.kdeconnect-kde
@@ -149,7 +152,7 @@
     pkgs.piper
     pkgs.libsForQt5.ark
     pkgs.keepassxc
-    pkgs.gnome.gnome-settings-daemon43
+    pkgs.syncthing
     
 
 
@@ -166,6 +169,9 @@
     # audio
     pkgs.pulseaudio
     pkgs.pavucontrol
+    # pkgs.ocenaudio
+    pkgs.tenacity
+    # pkgs.audacity
 
     # app launcher
     (rofi.override { plugins = [ rofi-emoji ]; })
@@ -191,9 +197,6 @@
     pkgs.firefox-bin
     pkgs.librewolf
     pkgs.ungoogled-chromium
-
-    # file managers
-    # pkgs.xfce.thunar
 
 
     # screenshot, webcam, etc.
@@ -293,6 +296,13 @@
 
 
 
+  ];
+
+  # enable thunar plugins
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+    thunar-media-tags-plugin
   ];
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132

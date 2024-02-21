@@ -236,13 +236,6 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
--- {{{ Mouse bindings
-root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
-))
--- }}}
 
 
 
@@ -398,15 +391,23 @@ globalkeys = gears.table.join(
 
     -- Cycle through tags: I want tag to be grid view of 2x3 rather than 1x6, emulating this below
     awful.key({ modkey,		  }, "Up",     
-        function() 
-            awful.tag.viewidx(-3) 
+        function()
+            awful.screen.connect_for_each_screen(
+                function(screen)
+                    awful.tag.viewidx(-3, screen)
+                end
+            ) 
         end,
         {description = "view tag above", group = "tag"}
     ),
 
     awful.key({ modkey,           }, "Down",   
         function() 
-            awful.tag.viewidx(3) 
+            awful.screen.connect_for_each_screen(
+                function(screen)
+                    awful.tag.viewidx(3, screen)
+                end
+            ) 
         end,
         {description = "view tag below", group = "tag"}
     ),
