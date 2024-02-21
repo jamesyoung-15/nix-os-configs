@@ -12,15 +12,22 @@ theme.wallpaper = themes_path .. "zenburn/zenburn-background.png"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "roboto 8"
+theme.font      = "Roboto Medium 9"
 
 -- {{{ Colors
-theme.fg_normal  = "#DCDCCC"
-theme.fg_focus   = "#F0DFAF"
-theme.fg_urgent  = "#CC9393"
-theme.bg_normal  = "#3F3F3F"
-theme.bg_focus   = "#1E2320"
-theme.bg_urgent  = "#3F3F3F"
+-- theme.fg_normal  = "#DCDCCC"
+-- theme.fg_focus   = "#F0DFAF"
+-- theme.fg_urgent  = "#CC9393"
+-- theme.bg_normal  = "#3F3F3F"
+-- theme.bg_focus   = "#1E2320"
+-- theme.bg_urgent  = "#3F3F3F"
+-- own theme
+theme.fg_normal                                 = "#cdd6f4"
+theme.fg_focus                                  = "#cba6f7"
+theme.fg_urgent                                 = "#cdd6f4"
+theme.bg_normal                                 = "#1E1E2E"
+theme.bg_focus                                  = "#1E1E2E"
+theme.bg_urgent                                 = "#f38ba8"
 theme.bg_systray = theme.bg_normal
 -- }}}
 
@@ -30,12 +37,24 @@ theme.border_width  = dpi(2)
 theme.border_normal = "#3F3F3F"
 theme.border_focus  = "#6F6F6F"
 theme.border_marked = "#CC9393"
+-- own theme
+theme.border_normal                             = "#1E1E2E"
+theme.border_focus                              = "#cba6f7"
+theme.border_marked                             = "#cba6f7"
+
 -- }}}
 
 -- {{{ Titlebars
-theme.titlebar_bg_focus  = "#3F3F3F"
-theme.titlebar_bg_normal = "#3F3F3F"
+-- theme.titlebar_bg_focus  = "#3F3F3F"
+-- theme.titlebar_bg_normal = "#3F3F3F"
+-- own theme
+theme.tasklist_bg_focus                         = "#1E1E2E"
+theme.titlebar_bg_focus                         = theme.bg_focus
+theme.titlebar_bg_normal                        = theme.bg_normal
+theme.titlebar_fg_focus                         = theme.fg_focus
+
 -- }}}
+
 
 -- There are other variable sets
 -- overriding the default one when
