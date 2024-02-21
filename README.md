@@ -2,7 +2,7 @@
 My desktop (and later laptop) config files. Ongoing transitioning from Arch + KDE (see old configs [here]()) to NixOS + AwesomeWM.
 
 ## Preview
-![](./assets/20240218-DesktopScreen.png)
+![](./assets/20240221_NixDesktop.png)
 
 See workflow demo [here](#demo).
 
@@ -22,7 +22,7 @@ See workflow demo [here](#demo).
 The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`. The NixOS config `nixos/configuration.nix` goes in `/etc/nixos/configruation.nix`, but can also be changed.
 
 ## Demo
-![](./assets/demo.gif)
+![](./assets/20240221_WindowManagerWorkflow.gif)
 
 ## Application List
 ### My Other Commonly Used Applications (GUI)
