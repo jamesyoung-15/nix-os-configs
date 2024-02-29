@@ -204,6 +204,7 @@ awful.screen.connect_for_each_screen(function(s)
          position = "top", 
          screen = s, 
     })
+
     
 
     -- Add widgets to the wibox
@@ -465,7 +466,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "r", function() awful.util.spawn('rofi -show drun') end,
               {description = "run rofi launcher", group = "launcher"}),
 
-    awful.key({ modkey, "Control" }, "e", function() awful.util.spawn('rofi -modi emoji -show emoji -kb-custom-1 Ctrl+c') end,
+    awful.key({ modkey, "Control" }, "e", function() awful.util.spawn('rofi -modi li -show emoji -kb-custom-1 Ctrl+c') end,
               {description = "run rofi emoji launcher", group = "launcher"}),
 
     -- Launch Browser 

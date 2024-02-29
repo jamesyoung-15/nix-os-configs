@@ -158,6 +158,8 @@
     pkgs.libsForQt5.ark
     pkgs.keepassxc
     pkgs.syncthing
+    # pkgs.qbittorrent
+    pkgs.qbittorrent-qt5
     
 
 
@@ -228,7 +230,11 @@
     # cursors, icons, etc.
     pkgs.catppuccin-cursors
     pkgs.papirus-icon-theme
-    (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula"]; })
+    # (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula"]; })
+    pkgs.tela-icon-theme
+    # pkgs.colloid-icon-theme
+    pkgs.material-black-colors
+
     pkgs.capitaine-cursors
 
 
@@ -261,6 +267,9 @@
     # Game Tools
     pkgs.mangohud
     pkgs.goverlay
+    pkgs.lutris
+    wineWowPackages.stable
+    winetricks
 
     # Programming Languages
     pkgs.jdk
@@ -276,11 +285,13 @@
     pkgs.libsForQt5.okular
     pkgs.onlyoffice-bin
     # pkgs.libreoffice-bin
+    # pkgs.zoom-us
 
     # note-taking, diagrams, etc.
     pkgs.joplin-desktop
     pkgs.drawio
     pkgs.rnote
+    pkgs.xournalpp
 
     # graphics
     pkgs.blender
