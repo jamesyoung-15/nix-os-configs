@@ -79,7 +79,7 @@
   users.users.jamesyoung = {
     isNormalUser = true;
     description = "James Young";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "storage"];
     packages = with pkgs; [];
   };
 
@@ -101,6 +101,13 @@
     };
   };
 
+  # automount disks
+  fileSystems."/home/jamesyoung/Extra-Storage-01" = {
+    device = "/dev/disk/by-label/JamesStorage";
+    fsType = "ext4";
+    options = [ "nofail" ];
+  };
+
   # keyboard
   i18n.inputMethod = {
     enabled = "ibus";
@@ -110,6 +117,9 @@
         
     ];
   };
+
+  # remove  x11 ssh ask pass gui thing: https://github.com/NixOS/nixpkgs/issues/24311
+  programs.ssh.askPassword = "";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -160,6 +170,7 @@
     pkgs.syncthing
     # pkgs.qbittorrent
     pkgs.qbittorrent-qt5
+    pkgs.libsForQt5.merkuro
     
 
 
@@ -230,11 +241,10 @@
     # cursors, icons, etc.
     pkgs.catppuccin-cursors
     pkgs.papirus-icon-theme
-    # (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula"]; })
-    pkgs.tela-icon-theme
-    # pkgs.colloid-icon-theme
-    pkgs.material-black-colors
-
+    (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula" "purple"]; })
+    # pkgs.tela-icon-theme
+    (pkgs.whitesur-icon-theme.override { themeVariants = ["purple" "nord"];})
+    # paper-icon-theme
     pkgs.capitaine-cursors
 
 
@@ -254,15 +264,13 @@
     pkgs.mictray
     pkgs.gxkb
 
-    # top bar
-    # pkgs.polybarFull
-
 
     # Games
     pkgs.cemu
     pkgs.yuzu
     pkgs.runelite
     pkgs.retroarch
+    pkgs.ryujinx
 
     # Game Tools
     pkgs.mangohud
@@ -292,6 +300,7 @@
     pkgs.drawio
     pkgs.rnote
     pkgs.xournalpp
+    pkgs.anki
 
     # graphics
     pkgs.blender
