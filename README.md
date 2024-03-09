@@ -27,7 +27,7 @@ The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
 ## Application List
 ### My Other Commonly Used Applications (GUI)
 - GTK Themes Editing: lxappearance
-- QT Themes Editing: KDE settings
+- QT Themes Editing: kvantum + qt5ct
 - Video Player: VLC, MPV
 - Browsers: Librewolf, Ungoogle Chromium
 - Text-Editors: Kate, NVIM
@@ -36,7 +36,7 @@ The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
 - Image Viewer: Gwenview
 - Gaming
   - Launchers: Steam, Lutris
-  - Emulators: Yuzu (Switch), Cemu (Wii)
+  - Emulators: Yuzu (RIP), Cemu (Wii), Ryujinx (Switch)
 - Graphics: 
   - 3D: Blender
   - Photo Editing: GIMP
@@ -48,6 +48,7 @@ The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
   - Diagrams: DrawIO, Excalidraw
 - Printing: CUPS
 - USB flashing: Balena Etcher
+- Screenshot Utility: coreshot
 
 ### Some Extra CLI Applications I use
 - tree
