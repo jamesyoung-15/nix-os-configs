@@ -66,6 +66,9 @@ theme.titlebar_fg_focus                         = theme.fg_focus
 --theme.taglist_bg_focus = "#CC9393"
 -- }}}
 
+theme.taglist_bg_focus = "#cba6f7"
+theme.taglist_fg_focus = "#11111b"
+
 -- {{{ Tasklist
 -- disable task name
 theme.tasklist_disable_task_name = true

@@ -302,6 +302,10 @@
     pkgs.xournalpp
     pkgs.anki
 
+    # latex (using full, extremely large can use smaller if needed): https://nixos.wiki/wiki/TexLive#Installation
+    pkgs.texliveFull
+
+
     # graphics
     pkgs.blender
     pkgs.libresprite

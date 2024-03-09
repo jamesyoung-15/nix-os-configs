@@ -2,7 +2,7 @@
 My desktop (and later laptop) config files. Ongoing transitioning from Arch + KDE (see old configs [here](https://github.com/jamesyoung-15/arch-kde-configs)) to NixOS + AwesomeWM.
 
 ## Preview
-![](./assets/20240221_NixDesktop.png)
+![](./assets/20240309-DesktopNix.png)
 
 See workflow demo [here](#demo).
 

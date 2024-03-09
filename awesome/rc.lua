@@ -51,7 +51,9 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.init(awful.util.getdir("config") .. "themes/zenburn/theme.lua" )
+-- beautiful.init(awful.util.getdir("config") .. "themes/zenburn/theme.lua" )
+-- own theme
+beautiful.init(awful.util.getdir("config") .. "themes/my-theme/theme.lua" )
 
 beautiful.useless_gap = 1
 
@@ -118,6 +120,7 @@ local month_calendar = awful.widget.calendar_popup.month()
 -- Create a textclock widget
 mytextclock = wibox.widget {
     format = '%A %F, %H:%M',
+    font = 'Roboto Mono 9',
     widget = wibox.widget.textclock,
     -- spawn a calendar when clicked
     buttons = awful.button({ }, 3, function()      
@@ -232,8 +235,10 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({
-         position = "top", 
-         screen = s, 
+        position = "top", 
+        screen = s, 
+        height = 27,
+        opacity = 0.9,
     })
 
     
@@ -242,11 +247,29 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
+            {
+                top = 4,
+                bottom = 4,
+                left = 6,
+                right = 2,
+                mylauncher,
+                layout = wibox.container.margin,
+            },
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
-            s.mytaglist,
-            s.mypromptbox,
-            s.mytasklist,
+            {
+                left = 3,
+                top = 2,
+                bottom = 2,
+                s.mytaglist,
+                layout = wibox.container.margin,
+            },
+            -- s.mypromptbox,
+            {
+                s.mytasklist,
+                layout = wibox.container.margin,
+                top = 4,
+                bottom = 4,
+            },
         },
         {-- Middle widget
             mytextclock,
@@ -257,10 +280,22 @@ awful.screen.connect_for_each_screen(function(s)
         -- s.mytasklist,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            -- mykeyboardlayout,
-            wibox.widget.systray(),
-            -- mytextclock,
-            s.mylayoutbox,
+            
+            {
+                wibox.widget.systray(),
+                layout = wibox.container.margin,
+                right = 2,
+                -- left = 2,
+                top = 2,
+                bottom = 2,
+            },
+            {
+                right  = 5,
+                bottom = 3,
+                top = 3,
+                s.mylayoutbox,
+                layout = wibox.container.margin,
+            },
         },
     }
 
@@ -497,7 +532,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "r", function() awful.util.spawn('rofi -show drun') end,
               {description = "run rofi launcher", group = "launcher"}),
 
-    awful.key({ modkey, "Control" }, "e", function() awful.util.spawn('rofi -modi li -show emoji -kb-custom-1 Ctrl+c') end,
+    awful.key({ modkey, "Control" }, "e", function() awful.util.spawn('rofi -show emoji Ctrl+c') end,
               {description = "run rofi emoji launcher", group = "launcher"}),
 
     -- Launch Browser 
@@ -595,7 +630,7 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 6 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
@@ -607,17 +642,6 @@ for i = 1, 9 do
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
-                  
-        -- Toggle tag display.
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
-                  function ()
-                      local screen = awful.screen.focused()
-                      local tag = screen.tags[i]
-                      if tag then
-                         awful.tag.viewtoggle(tag)
-                      end
-                  end,
-                  {description = "toggle tag #" .. i, group = "tag"}),
 
         -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
@@ -629,18 +653,7 @@ for i = 1, 9 do
                           end
                      end
                   end,
-                  {description = "move focused client to tag #"..i, group = "tag"}),
-        -- Toggle tag on focused client.
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = client.focus.screen.tags[i]
-                          if tag then
-                              client.focus:toggle_tag(tag)
-                          end
-                      end
-                  end,
-                  {description = "toggle focused client on tag #" .. i, group = "tag"})
+                  {description = "move focused client to tag #"..i, group = "tag"})
     )
 end
 
@@ -752,26 +765,58 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c) : setup {
+    awful.titlebar(c, {position="top"}) : setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
+            {
+                awful.titlebar.widget.iconwidget(c),
+                top = 3,
+                bottom = 3,
+                left = 5,
+                layout = wibox.container.margin,
+            },
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
         { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
+            -- { -- Title
+            --     align  = "center",
+            --     widget = awful.titlebar.widget.titlewidget(c)
+            -- },
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
+            -- awful.titlebar.widget.floatingbutton (c),
+            -- awful.titlebar.widget.maximizedbutton(c),
+            -- awful.titlebar.widget.stickybutton   (c),
+            -- awful.titlebar.widget.ontopbutton    (c),
+            {
+                awful.titlebar.widget.minimizebutton (c),
+                right = 2,
+                top = 3,
+                bottom = 3,
+                layout = wibox.container.margin,  
+            },
+
+            {
+                awful.titlebar.widget.maximizedbutton(c),
+                right = 2,
+                top = 3,
+                bottom = 3,
+                layout = wibox.container.margin,  
+            },
+
+            {
+                awful.titlebar.widget.closebutton    (c),
+                right = 2,
+                top = 3,
+                bottom = 3,
+                layout = wibox.container.margin,  
+            },
+            {
+                right = 5,
+                layout = wibox.container.margin,  
+            },
             layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal
