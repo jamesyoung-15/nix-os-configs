@@ -118,13 +118,15 @@ local month_calendar = awful.widget.calendar_popup.month()
 -- Create a textclock widget
 mytextclock = wibox.widget {
     format = '%A %F, %H:%M',
-    font = 'Roboto Mono 9',
+    font = 'Ubuntu Nerd Font Bold 10',
     widget = wibox.widget.textclock,
     -- spawn a calendar when clicked
     buttons = awful.button({ }, 3, function()      
         awful.util.spawn("merkuro-calendar")
     end)
 }
+
+
 
 local cw = calendar_widget({
     theme = 'outrun',
@@ -235,7 +237,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({
         position = "top", 
         screen = s, 
-        height = 27,
+        height = 29,
         opacity = 0.9,
     })
 
@@ -248,8 +250,8 @@ awful.screen.connect_for_each_screen(function(s)
             {
                 top = 4,
                 bottom = 4,
-                left = 6,
-                right = 2,
+                left = 15,
+                right = 10,
                 mylauncher,
                 layout = wibox.container.margin,
             },
@@ -258,6 +260,7 @@ awful.screen.connect_for_each_screen(function(s)
                 left = 3,
                 top = 2,
                 bottom = 2,
+                right = 5,
                 s.mytaglist,
                 layout = wibox.container.margin,
             },
@@ -282,13 +285,13 @@ awful.screen.connect_for_each_screen(function(s)
             {
                 wibox.widget.systray(),
                 layout = wibox.container.margin,
-                right = 2,
+                right = 5,
                 -- left = 2,
                 top = 2,
                 bottom = 2,
             },
             {
-                right  = 5,
+                right  = 10,
                 bottom = 3,
                 top = 3,
                 s.mylayoutbox,
