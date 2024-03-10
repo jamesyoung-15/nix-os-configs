@@ -210,6 +210,7 @@
     pkgs.mpv
     pkgs.clementine
     pkgs.libvlc
+    pkgs.qmplay2
 
     # browsers
     pkgs.firefox-bin
