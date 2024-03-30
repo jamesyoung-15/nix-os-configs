@@ -73,6 +73,8 @@
 
     layout = "us";
     xkbVariant = "";
+
+    wacom.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -118,8 +120,18 @@
     ];
   };
 
+
+
+  # tablet driver support
+  # hardware.opentabletdriver.enable = true;
+
   # remove  x11 ssh ask pass gui thing: https://github.com/NixOS/nixpkgs/issues/24311
   programs.ssh.askPassword = "";
+
+    # for balena etcher
+  nixpkgs.config.permittedInsecurePackages = [
+                "electron-19.1.9"
+              ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -159,6 +171,7 @@
     pkgs.mediainfo
     pkgs.busybox
     pkgs.zip
+    pkgs.nix-tree
 
     # gui utilities
     pkgs.libsForQt5.kdeconnect-kde
@@ -171,7 +184,12 @@
     # pkgs.qbittorrent
     pkgs.qbittorrent-qt5
     pkgs.libsForQt5.merkuro
-    
+    pkgs.etcher
+
+    # wacom tablet
+    # pkgs.wacomtablet
+    pkgs.libwacom
+    pkgs.xf86_input_wacom
 
 
     # terminal
@@ -191,8 +209,14 @@
     pkgs.tenacity
     # pkgs.audacity
 
-    # app launcher
-    (rofi.override { plugins = [ rofi-emoji ]; })
+    # rofi (launcher)
+    (rofi.override { plugins = [ 
+      rofi-emoji
+      rofi-power-menu
+      rofi-calc
+      rofi-screenshot
+      rofi-file-browser
+    ]; })
 
     # display packages
     pkgs.picom
@@ -285,6 +309,8 @@
     pkgs.rustc
     pkgs.go
     pkgs.nodePackages_latest.nodejs
+    pkgs.python3
+    pkgs.jupyter
 
     # epub
     pkgs.calibre
