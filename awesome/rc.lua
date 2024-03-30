@@ -535,8 +535,13 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "r", function() awful.util.spawn('rofi -show drun') end,
               {description = "run rofi launcher", group = "launcher"}),
 
+    -- Rofi emoji
     awful.key({ modkey, "Control" }, "e", function() awful.util.spawn('rofi -show emoji Ctrl+c') end,
               {description = "run rofi emoji launcher", group = "launcher"}),
+
+    -- Rofi calculator
+    awful.key({ modkey, "Control" }, "c", function() awful.util.spawn('rofi -show calc -modi calc -no-show-match -no-sort') end,
+              {description = "run rofi calculator", group = "launcher"}),
 
     -- Launch Browser 
     awful.key({ modkey }, "b", function() awful.util.spawn('firefox') end,
