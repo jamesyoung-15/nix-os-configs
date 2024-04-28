@@ -81,7 +81,7 @@
   users.users.jamesyoung = {
     isNormalUser = true;
     description = "James Young";
-    extraGroups = [ "networkmanager" "wheel" "docker" "storage"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "storage" "audio" "jackaudio" "kvm"];
     packages = with pkgs; [];
   };
 
@@ -120,7 +120,8 @@
     ];
   };
 
-
+  # enable adb (Android)
+  programs.adb.enable = true;
 
   # tablet driver support
   # hardware.opentabletdriver.enable = true;
@@ -145,6 +146,10 @@
     pkgs.tldr
     pkgs.tmux
     pkgs.tree
+    pkgs.screen
+    pkgs.gdb
+    pkgs.valgrind
+    pkgs.direnv
     
     # system utils
     pkgs.neofetch
@@ -161,17 +166,26 @@
     pkgs.starship
 
     # cli utilities
+    # process monitoring
+    pkgs.htop
+    pkgs.btop
+    pkgs.busybox
+    pkgs.zip
+    pkgs.nix-tree
+    # networking
+    pkgs.nmap
+    pkgs.iperf
+    pkgs.iperf2
+    pkgs.dig
+    pkgs.rclone
+    pkgs.tcpdump
+    # multimedia
     pkgs.feh
     pkgs.gif-for-cli
     pkgs.imagemagick
     pkgs.playerctl
     pkgs.yt-dlp
-    pkgs.htop
-    pkgs.btop
     pkgs.mediainfo
-    pkgs.busybox
-    pkgs.zip
-    pkgs.nix-tree
 
     # gui utilities
     pkgs.libsForQt5.kdeconnect-kde
@@ -186,21 +200,38 @@
     pkgs.libsForQt5.merkuro
     pkgs.etcher
 
-    # wacom tablet
-    # pkgs.wacomtablet
+    # Programming Languages
+    pkgs.jdk
+    pkgs.rustc
+    pkgs.go
+    pkgs.nodePackages_latest.nodejs
+    pkgs.python3
+    pkgs.jupyter
+
+    # latex (using full, extremely large can use smaller if needed): https://nixos.wiki/wiki/TexLive#Installation
+    pkgs.texliveFull
+
+    # Programming Tools
+    pkgs.hugo
+
+    # embedded systems tools
+    pkgs.arduino
+    pkgs.platformio
+    # pkgs.stm32cubemx
+
+    # stylus tablet support
     pkgs.libwacom
     pkgs.xf86_input_wacom
-
+    pkgs.input-remapper
 
     # terminal
     pkgs.kitty
     pkgs.libsForQt5.konsole
     pkgs.alacritty
     
-
     # bluetooth
-    pkgs.bluez
-    pkgs.libsForQt5.bluedevil
+    # pkgs.bluez
+    # pkgs.libsForQt5.bluedevil
 
     # audio
     pkgs.pulseaudio
@@ -208,6 +239,8 @@
     # pkgs.ocenaudio
     pkgs.tenacity
     # pkgs.audacity
+    pkgs.alsa-utils
+    pkgs.pamixer
 
     # rofi (launcher)
     (rofi.override { plugins = [ 
@@ -241,7 +274,6 @@
     pkgs.librewolf
     pkgs.ungoogled-chromium
 
-
     # screenshot, webcam, etc.
     pkgs.libsForQt5.spectacle
     pkgs.gnome.cheese
@@ -272,7 +304,6 @@
     # paper-icon-theme
     pkgs.capitaine-cursors
 
-
     # sddm customization
     pkgs.libsForQt5.sddm-kcm
     pkgs.libsForQt5.qt5.qtgraphicaleffects
@@ -289,7 +320,6 @@
     pkgs.mictray
     pkgs.gxkb
 
-
     # Games
     pkgs.cemu
     pkgs.yuzu
@@ -303,14 +333,6 @@
     pkgs.lutris
     wineWowPackages.stable
     winetricks
-
-    # Programming Languages
-    pkgs.jdk
-    pkgs.rustc
-    pkgs.go
-    pkgs.nodePackages_latest.nodejs
-    pkgs.python3
-    pkgs.jupyter
 
     # epub
     pkgs.calibre
@@ -329,10 +351,6 @@
     pkgs.xournalpp
     pkgs.anki
 
-    # latex (using full, extremely large can use smaller if needed): https://nixos.wiki/wiki/TexLive#Installation
-    pkgs.texliveFull
-
-
     # graphics
     pkgs.blender
     pkgs.libresprite
@@ -348,9 +366,7 @@
       ];
     })
     pkgs.gimp-with-plugins
-    
-
-
+  
 
   ];
 
@@ -456,22 +472,23 @@
     jack.enable = true;
   };
 
+
   # enable bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
 
   # pipewire bluetooth support
-  environment.etc = {
-    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-      bluez_monitor.properties = {
-        ["bluez5.enable-sbc-xq"] = true,
-        ["bluez5.enable-msbc"] = true,
-        ["bluez5.enable-hw-volume"] = true,
-        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-      }
-    '';
-  };
+  # environment.etc = {
+  #   "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+  #     bluez_monitor.properties = {
+  #       ["bluez5.enable-sbc-xq"] = true,
+  #       ["bluez5.enable-msbc"] = true,
+  #       ["bluez5.enable-hw-volume"] = true,
+  #       ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+  #     }
+  #   '';
+  # };
 
 
   # enable gnome keyring
