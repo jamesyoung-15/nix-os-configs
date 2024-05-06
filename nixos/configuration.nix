@@ -89,7 +89,7 @@
   nixpkgs.config.allowUnfree = true;
   
   # Change default editor from nano to neovim
-  environment.variables.EDITOR = "neovim";
+  environment.variables.EDITOR = "nvim";
 
   # bash setup
   programs.bash = {
@@ -186,6 +186,8 @@
     pkgs.playerctl
     pkgs.yt-dlp
     pkgs.mediainfo
+    pkgs.ffmpeg-full
+    pkgs.mp3info
 
     # gui utilities
     pkgs.libsForQt5.kdeconnect-kde
@@ -199,6 +201,7 @@
     pkgs.qbittorrent-qt5
     pkgs.libsForQt5.merkuro
     pkgs.etcher
+    pkgs.rpi-imager
 
     # Programming Languages
     pkgs.jdk
@@ -299,7 +302,7 @@
     pkgs.catppuccin-cursors
     pkgs.papirus-icon-theme
     (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula" "purple"]; })
-    # pkgs.tela-icon-theme
+    pkgs.tela-icon-theme
     (pkgs.whitesur-icon-theme.override { themeVariants = ["purple" "nord"];})
     # paper-icon-theme
     pkgs.capitaine-cursors
