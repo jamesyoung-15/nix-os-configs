@@ -216,6 +216,7 @@
 
     # Programming Tools
     pkgs.hugo
+    pkgs.minikube
 
     # embedded systems tools
     pkgs.arduino
@@ -345,7 +346,7 @@
     pkgs.libsForQt5.okular
     pkgs.onlyoffice-bin
     # pkgs.libreoffice-bin
-    # pkgs.zoom-us
+    pkgs.zoom-us
 
     # note-taking, diagrams, etc.
     pkgs.joplin-desktop
