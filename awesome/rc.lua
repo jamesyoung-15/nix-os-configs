@@ -241,6 +241,9 @@ awful.screen.connect_for_each_screen(function(s)
         opacity = 0.9,
     })
 
+    -- systray
+    local systray = wibox.widget.systray()
+    systray:set_base_size(24)
     
 
     -- Add widgets to the wibox
@@ -287,13 +290,13 @@ awful.screen.connect_for_each_screen(function(s)
                 layout = wibox.container.margin,
                 right = 5,
                 -- left = 2,
-                top = 2,
+                top = 4,
                 bottom = 2,
             },
             {
                 right  = 10,
                 bottom = 3,
-                top = 3,
+                top = 4,
                 s.mylayoutbox,
                 layout = wibox.container.margin,
             },

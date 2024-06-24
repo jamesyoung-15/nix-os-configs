@@ -208,7 +208,17 @@
     pkgs.rustc
     pkgs.go
     pkgs.nodePackages_latest.nodejs
-    pkgs.python3
+    (pkgs.python3.withPackages (python-pkgs: [
+      python-pkgs.pip
+      python-pkgs.flask
+      python-pkgs.numpy
+      python-pkgs.fastapi
+      python-pkgs.pandas
+      python-pkgs.requests
+      python-pkgs.ipykernel
+      python-pkgs.matplotlib
+      python-pkgs.jupyter
+    ]))
     pkgs.jupyter
 
     # latex (using full, extremely large can use smaller if needed): https://nixos.wiki/wiki/TexLive#Installation
@@ -216,7 +226,18 @@
 
     # Programming Tools
     pkgs.hugo
-    pkgs.minikube
+
+    # containerization
+    # pkgs.minikube
+    # pkgs.k3s
+    # pkgs.kubernetes
+    # pkgs.faas-cli
+    # pkgs.kubernetes-helm
+    # pkgs.arkade
+
+    # storage/databases
+    # pkgs.minio
+    # pkgs.minio-client
 
     # embedded systems tools
     pkgs.arduino
@@ -445,6 +466,14 @@
 
   # List services that you want to enable:
 
+
+  # k3s services
+  services.k3s.enable = true;
+  services.k3s.role = "server";
+  services.k3s.extraFlags = toString [
+    # "--kubelet-arg=v=4" # Optionally add additional args to k3s
+  ];
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
@@ -523,6 +552,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
 }
