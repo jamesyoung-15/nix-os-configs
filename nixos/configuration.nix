@@ -222,6 +222,9 @@
       python-pkgs.ipykernel
       python-pkgs.matplotlib
       python-pkgs.jupyter
+      python-pkgs.pillow
+      python-pkgs.pytest
+      python-pkgs.selenium
     ]))
     pkgs.jupyter
 
