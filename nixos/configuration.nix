@@ -49,6 +49,7 @@
         noDesktop = true;
         enableXfwm = false;
       };
+      # plasma6.enable = true;
     };
 
     # Enable SDDM
@@ -60,10 +61,12 @@
       lightdm.greeters.gtk.cursorTheme.name = "Capitaine";
       lightdm.background = /home/jamesyoung/Pictures/Wallpapers/PurpleMoon-Wallpaper.jpg;
       defaultSession = "xfce+awesome";
+      # defaultSession = "plasma";
     };
 
     # Enable AwesomeWM
     windowManager.awesome = {
+      # enable = false;
       enable = true;
       luaModules = with pkgs.luaPackages; [
         luarocks # is the package manager for Lua modules
@@ -71,8 +74,8 @@
       ];
     };
 
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
 
     wacom.enable = true;
   };
@@ -200,8 +203,9 @@
     # pkgs.qbittorrent
     pkgs.qbittorrent-qt5
     pkgs.libsForQt5.merkuro
-    pkgs.etcher
+    # pkgs.etcher
     pkgs.rpi-imager
+    
 
     # Programming Languages
     pkgs.jdk
@@ -325,7 +329,7 @@
     pkgs.papirus-icon-theme
     (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula" "purple"]; })
     pkgs.tela-icon-theme
-    (pkgs.whitesur-icon-theme.override { themeVariants = ["purple" "nord"];})
+    # (pkgs.whitesur-icon-theme.override { themeVariants = ["purple" "nord"];})
     # paper-icon-theme
     pkgs.capitaine-cursors
 
@@ -347,7 +351,7 @@
 
     # Games
     pkgs.cemu
-    pkgs.yuzu
+    # pkgs.yuzu
     pkgs.runelite
     pkgs.retroarch
     pkgs.ryujinx
@@ -371,6 +375,7 @@
 
     # note-taking, diagrams, etc.
     pkgs.joplin-desktop
+    # pkgs.silverbullet
     pkgs.drawio
     pkgs.rnote
     pkgs.xournalpp
