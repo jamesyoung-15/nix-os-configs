@@ -39,8 +39,17 @@
   services.xserver = {
     enable = true;
 
+    # Enable XFCE (using as desktop manager but not as window manager, ie. install XFCE utilities for easier use) 
+    # see here: (https://nixos.wiki/wiki/Xfce#Using_as_a_desktop_manager_and_not_a_window_manager)
     desktopManager = {
-      plasma6.enable = true;
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        # if using window manager, should use below two options
+        noDesktop = true;
+        enableXfwm = false;
+      };
+      # plasma6.enable = true;
     };
 
     # Enable SDDM
@@ -51,9 +60,19 @@
       lightdm.greeters.gtk.iconTheme.name = "Papirus";
       lightdm.greeters.gtk.cursorTheme.name = "Capitaine";
       lightdm.background = /home/jamesyoung/Pictures/Wallpapers/PurpleMoon-Wallpaper.jpg;
-      defaultSession = "plasma";
+      defaultSession = "xfce+awesome";
+      # defaultSession = "plasma";
     };
 
+    # Enable AwesomeWM
+    windowManager.awesome = {
+      # enable = false;
+      enable = true;
+      luaModules = with pkgs.luaPackages; [
+        luarocks # is the package manager for Lua modules
+        luadbi-mysql # Database abstraction layer
+      ];
+    };
 
     xkb.layout = "us";
     xkb.variant = "";
@@ -139,8 +158,14 @@
     pkgs.neofetch
     # pkgs.xdotool
     pkgs.ydotool
+    # pkgs.xbindkeys
     pkgs.killall
-    # pkgs.parcellite
+    # pkgs.xclip
+    # pkgs.xfce.xfce4-clipman-plugin
+    # pkgs.clipboard-jh
+    # pkgs.lxqt.qlipper
+    pkgs.parcellite
+    # pkgs.copyq
     pkgs.findutils
     pkgs.starship
 
@@ -171,6 +196,7 @@
     # gui utilities
     pkgs.libsForQt5.kdeconnect-kde
     pkgs.gnome.gnome-disk-utility
+    pkgs.lxde.lxsession
     pkgs.piper
     pkgs.libsForQt5.ark
     pkgs.keepassxc
@@ -234,7 +260,7 @@
     # terminal
     pkgs.kitty
     pkgs.libsForQt5.konsole
-    # pkgs.alacritty
+    pkgs.alacritty
     
     # bluetooth
     # pkgs.bluez
@@ -250,19 +276,19 @@
     pkgs.pamixer
 
     # rofi (launcher)
-    # (rofi.override { plugins = [ 
-    #   rofi-emoji
-    #   rofi-power-menu
-    #   rofi-calc
-    #   rofi-screenshot
-    #   rofi-file-browser
-    # ]; })
+    (rofi.override { plugins = [ 
+      rofi-emoji
+      rofi-power-menu
+      rofi-calc
+      rofi-screenshot
+      rofi-file-browser
+    ]; })
 
     # display packages
-    # pkgs.picom
-    # pkgs.nitrogen
-    # pkgs.arandr
-    # pkgs.autorandr
+    pkgs.picom
+    pkgs.nitrogen
+    pkgs.arandr
+    pkgs.autorandr
 
     # editors
     pkgs.neovim
@@ -282,8 +308,10 @@
     pkgs.ungoogled-chromium
 
     # screenshot, webcam, etc.
-    # pkgs.libsForQt5.spectacle
+    pkgs.libsForQt5.spectacle
+    pkgs.gnome.cheese
     pkgs.ksnip
+    pkgs.CuboCore.coreshot
 
     # gtk config
     pkgs.lxappearance
@@ -382,11 +410,11 @@
   ];
 
   # enable thunar plugins
-  # programs.thunar.plugins = with pkgs.xfce; [
-  #   thunar-archive-plugin
-  #   thunar-volman
-  #   thunar-media-tags-plugin
-  # ];
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+    thunar-media-tags-plugin
+  ];
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
   programs.dconf.enable = true;
@@ -397,11 +425,17 @@
   services.udisks2.enable = true;
 
   # QT Theming
-  qt = {
-    enable = true;
-    platformTheme = "qtct";
-    style.name = "Lightly";
-  };
+  qt.enable = true;
+  qt.platformTheme = "qt5ct";
+  # qt.platformTheme = "gtk2";
+  # qt.platformTheme = "gnome";
+  # qt.style = "breeze";
+  # qt.platformTheme = "kde"; # don't use kde, causes QSystemTrayIcon::setVisible: No Icon set
+  # qt.platformTheme = "lxqt";
+  # environment.variables = {
+  #       # This will become a global environment variable
+  #      "QT_STYLE_OVERRIDE"="kvantum";
+  # };
 
 
   # Fonts
@@ -499,7 +533,7 @@
 
 
   # enable gnome keyring
-  # services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   # Enable XDG Portal
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
