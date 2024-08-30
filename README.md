@@ -43,28 +43,12 @@ Then apply changes by running rebuild and switch:
 
 `sudo nixos-rebuild switch`
 
-Once changes have been applied manually setup panel, theming, shortcuts, widgets
+Once changes have been applied manually setup panel, theming, shortcuts, widgets. Optionally add Krohnkite for tiling support.
 
 ### Todo
 
 - Organize config file better (can break down from one large file to smaller files)
 - Consider making KDE settings (theming, shortcuts, etc) more automated (currently have to manually go into KDE settings to do so)
-
-### Config Notes
-
-Currently all dumped into one large config file.
-  
-Config file assumes have mounted drive and will be auto-mounted. Eg:
-
-``` bash
-
-fileSystems."/home/jamesyoung/Extra-Storage-01" = {
-    device = "/dev/disk/by-label/JamesStorage";
-    fsType = "ext4";
-    options = [ "nofail" ];
-  };
-
-```
 
 ### My Application List
 
@@ -95,6 +79,7 @@ fileSystems."/home/jamesyoung/Extra-Storage-01" = {
 #### Some Extra CLI Applications I use
 
 - neofetch (display system info)
+- starship (bash prompt)
 - tldr (simplify man pages)
 - tmux (terminal multiplexer)
 - htop (top but a little nicer)
