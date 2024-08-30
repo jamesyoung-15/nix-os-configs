@@ -40,6 +40,10 @@ Replace default config file in `/etc/nixos/configuration.nix` using something li
 
 `sudo cp ./nixos/configuration.nix /etc/nixos/configuration.nix`.
 
+Or create symlink with something like:
+
+`sudo ln -s ./nixos/configuration.nix /etc/nixos/configuration.nix`
+
 Then apply changes by running rebuild and switch:
 
 `sudo nixos-rebuild switch`
