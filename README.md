@@ -19,18 +19,18 @@ My desktop config files using NixOS.
 - Tiling: [Krohnkite](https://github.com/anametologin/krohnkite)
 - Theme:
   - Global Theme: Breeze Dark
-  - Colors: Catppucin Mocha Lavender
-  - Window Decoration: Dracula
-  - Icons: Tela Dracula Dark
-  - Cursors: Dracula Cursors
+  - Colors: [Catppucin Mocha Lavender](https://github.com/catppuccin/kde)
+  - Window Decoration: [Dracula](https://draculatheme.com/)
+  - Icons: [Tela Dracula Dark](https://github.com/vinceliuice/Tela-icon-theme)
+  - Cursors: [Dracula Cursors](https://draculatheme.com/)
   - Wallpaper: See [here](./assets/PurpleMountain-Wallpaper.jpg)
 - KDE Panel Widgets (left to right):
-  - Application Launcher
-  - Desktop Indicator
-  - Icons-only Task Manager
-  - Digital Clock
-  - Panel Colorizer
-  - System Tray
+  - [Application Launcher](https://userbase.kde.org/Plasma_application_launchers)
+  - [Desktop Indicator](https://store.kde.org/p/2131462)
+  - [Icons-only Task Manager](https://userbase.kde.org/Plasma/Tasks/en)
+  - [Digital Clock](https://userbase.kde.org/Plasma/Clocks/en)
+  - [Panel Colorizer](https://store.kde.org/p/2130967)
+  - [System Tray](https://userbase.kde.org/Plasma/SystemTray)
 
 ## Notes
 
@@ -56,7 +56,7 @@ Once changes have been applied manually setup panel, theming, shortcuts, widgets
 #### My Other Commonly Used Applications (GUI)
 
 - Video Player: VLC, MPV
-- Browsers: Librewolf, Ungoogle Chromium, Firefox
+- Browsers: Firefox, Librewolf, Ungoogle Chromium
 - Text-Editors: Kate, VIM, NVIM
 - IDE: VSCode
 - PDF Viewer: Okular
