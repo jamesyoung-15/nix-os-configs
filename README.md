@@ -23,6 +23,7 @@ My desktop config files using NixOS.
   - Window Decoration: Dracula
   - Icons: Tela Dracula Dark
   - Cursors: Dracula Cursors
+  - Wallpaper: See [here](./assets/PurpleMountain-Wallpaper.jpg)
 - KDE Panel Widgets (left to right):
   - Application Launcher
   - Desktop Indicator
