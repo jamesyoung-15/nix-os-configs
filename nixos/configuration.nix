@@ -33,39 +33,32 @@
   # enable nix command and flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
-
-  # Configure keymap in X11
+  # setup desktop environment
+  services.desktopManager.plasma6.enable = true;
+ #  services.displayManager.sddm.enable = true;
+  
   services.xserver = {
     enable = true;
 
-    desktopManager = {
-      plasma6.enable = true;
-    };
+    # Enable LightDM
+     displayManager = {
+       lightdm.enable = true;
+       lightdm.greeters.gtk.enable = true;
+       lightdm.greeters.gtk.theme.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
+       lightdm.greeters.gtk.iconTheme.name = "Papirus";
+       lightdm.greeters.gtk.cursorTheme.name = "Capitaine";
+    #  # lightdm.background = /home/jamesyoung/Pictures/Wallpapers/PurpleMoon-Wallpaper.jpg;
+    #   defaultSession = "plasma";
+     };
 
-    # Enable SDDM
-    displayManager = {
-      lightdm.enable = true;
-      lightdm.greeters.gtk.enable = true;
-      lightdm.greeters.gtk.theme.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
-      lightdm.greeters.gtk.iconTheme.name = "Papirus";
-      lightdm.greeters.gtk.cursorTheme.name = "Capitaine";
-      lightdm.background = /home/jamesyoung/Pictures/Wallpapers/PurpleMoon-Wallpaper.jpg;
-      defaultSession = "plasma";
-    };
-
-
-    xkb.layout = "us";
-    xkb.variant = "";
-
-    wacom.enable = true;
+    # wacom.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jamesyoung = {
     isNormalUser = true;
     description = "James Young";
-    extraGroups = [ "networkmanager" "wheel" "docker" "storage" "audio" "jackaudio" "kvm"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "storage" "audio" "jackaudio" "kvm" "dialout"];
     packages = with pkgs; [];
   };
 
@@ -107,8 +100,6 @@
   # enable adb (Android)
   programs.adb.enable = true;
 
-  # tablet driver support
-  # hardware.opentabletdriver.enable = true;
 
   # remove  x11 ssh ask pass gui thing: https://github.com/NixOS/nixpkgs/issues/24311
   programs.ssh.askPassword = "";
@@ -137,6 +128,7 @@
     
     # system utils
     pkgs.neofetch
+    pkgs.appimage-run
     # pkgs.xdotool
     pkgs.ydotool
     pkgs.killall
@@ -169,15 +161,15 @@
     pkgs.mp3info
 
     # gui utilities
-    pkgs.libsForQt5.kdeconnect-kde
+    pkgs.kdePackages.kdeconnect-kde
     pkgs.gnome.gnome-disk-utility
     pkgs.piper
-    pkgs.libsForQt5.ark
+    # pkgs.kdePackages.ark
     pkgs.keepassxc
     pkgs.syncthing
     # pkgs.qbittorrent
-    pkgs.qbittorrent-qt5
-    pkgs.libsForQt5.merkuro
+    pkgs.qbittorrent
+    # pkgs.kdePackages.merkuro
     # pkgs.etcher
     pkgs.rpi-imager
     
@@ -224,16 +216,18 @@
     # embedded systems tools
     pkgs.arduino
     pkgs.platformio
+    pkgs.platformio-core
     # pkgs.stm32cubemx
 
     # stylus tablet support
     pkgs.libwacom
     pkgs.xf86_input_wacom
     pkgs.input-remapper
+    pkgs.opentabletdriver
 
     # terminal
     pkgs.kitty
-    pkgs.libsForQt5.konsole
+    # pkgs.kdePackages.konsole
     # pkgs.alacritty
     
     # bluetooth
@@ -267,7 +261,7 @@
     # editors
     pkgs.neovim
     pkgs.vscode
-    pkgs.libsForQt5.kate
+    # pkgs.kdePackages.kate
 
     # media players
     pkgs.vlc
@@ -286,9 +280,9 @@
     pkgs.ksnip
 
     # gtk config
-    pkgs.lxappearance
-    libsForQt5.qtstyleplugin-kvantum
-    pkgs.libsForQt5.qt5ct
+    # pkgs.lxappearance
+    # libsForQt5.qtstyleplugin-kvantum
+    # pkgs.libsForQt5.qt5ct
 
     # gtk and qt themes
     (pkgs.catppuccin-kde.override { accents = ["lavender"]; flavour  = ["mocha"]; winDecStyles = ["modern"]; })
@@ -296,9 +290,7 @@
     pkgs.catppuccin-kvantum
     pkgs.dracula-theme
     pkgs.lightly-qt
-    pkgs.libsForQt5.breeze-qt5
-    pkgs.qt6Packages.qt6ct
-    # pkgs.libsForQt5.systemsettings # kde system settings
+    # pkgs.whitesur-kde
 
     # cursors, icons, etc.
     pkgs.catppuccin-cursors
@@ -308,22 +300,6 @@
     # (pkgs.whitesur-icon-theme.override { themeVariants = ["purple" "nord"];})
     # paper-icon-theme
     pkgs.capitaine-cursors
-
-    # sddm customization
-    pkgs.libsForQt5.sddm-kcm
-    pkgs.libsForQt5.qt5.qtgraphicaleffects
-    pkgs.libsForQt5.qt5.qtsvg
-    pkgs.qt6.qtsvg
-    pkgs.libsForQt5.qt5.qtquickcontrols2
-    pkgs.catppuccin-sddm-corners
-
-    # applets
-    pkgs.networkmanagerapplet
-    pkgs.volumeicon
-    pkgs.volctl
-    pkgs.pasystray
-    pkgs.mictray
-    pkgs.gxkb
 
     # Games
     pkgs.cemu
@@ -344,7 +320,7 @@
     pkgs.calibre-web
 
     # office
-    pkgs.libsForQt5.okular
+    # pkgs.kdePackages.okular
     pkgs.onlyoffice-bin
     # pkgs.libreoffice-bin
     pkgs.zoom-us
@@ -360,9 +336,9 @@
     # graphics
     pkgs.blender
     pkgs.libresprite
-    pkgs.libsForQt5.kdenlive
+    pkgs.kdePackages.kdenlive
     pkgs.glaxnimate
-    pkgs.libsForQt5.gwenview
+    # pkgs.kdePackages.gwenview
     pkgs.obs-studio
     (pkgs.wrapOBS {
       plugins = with pkgs.obs-studio-plugins; [
@@ -395,13 +371,6 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-
-  # QT Theming
-  qt = {
-    enable = true;
-    platformTheme = "qtct";
-    style.name = "Lightly";
-  };
 
 
   # Fonts
@@ -483,7 +452,7 @@
   # enable bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  services.blueman.enable = true;
+  # services.blueman.enable = true; # only needed for WM or DE without bluetooth manager
 
   # pipewire bluetooth support
   # environment.etc = {
