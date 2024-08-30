@@ -1,43 +1,85 @@
 # My NixOS Configs
-My desktop config files NixOS + AwesomeWM.
+
+My desktop config files using NixOS.
 
 ## Preview
-![](./assets/20240309-DesktopNix.png)
 
-See workflow demo [here](#demo).
+![Floating Setup](./assets/20240830_KDESetup_1.png)
+
+![Tiling Setup](./assets/20240830_KDESetup_2.png)
+
+![Desktop Setup](./assets/20240830_KDESetup_3.png)
 
 ## System Info
+
 - OS: [NixOS](https://nixos.org/)
-- Window Manager: [AwesomeWM](https://awesomewm.org/)
+- Desktop Environment: [KDE Plamsa 6](https://nixos.wiki/wiki/KDE)
 - Shell: Bash
-- Terminal: [kitty](https://github.com/kovidgoyal/kitty)
-- Application Launcher: [Rofi](https://github.com/davatorium/rofi)
-- File Manager: [Thundar](https://nixos.wiki/wiki/Thunar)
-- Topbar: [Wibar](https://awesomewm.org/doc/api/classes/awful.wibar.html)
-- GTK Themes: [Catppuccin GTK](https://github.com/catppuccin/gtk)
-- QT Theme: [Catppuccin qt5ct](https://github.com/catppuccin/qt5ct)
+- Terminal: [Konsole](https://konsole.kde.org/)
+- Tiling: [Krohnkite](https://github.com/anametologin/krohnkite)
+- Theme:
+  - Global Theme: Breeze Dark
+  - Colors: Catppucin Mocha Lavender
+  - Window Decoration: Dracula
+  - Icons: Tela Dracula Dark
+  - Cursors: Dracula Cursors
+- KDE Panel Widgets (left to right):
+  - Application Launcher
+  - Desktop Indicator
+  - Icons-only Task Manager
+  - Digital Clock
+  - Panel Colorizer
+  - System Tray
 
+## Notes
 
-## System Setup
-The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`. The NixOS config `nixos/configuration.nix` goes in `/etc/nixos/configruation.nix`, but can also be changed.
+### Setup
 
-## Demo
-![](./assets/20240221_WindowManagerWorkflow.gif)
+Replace default config file in `/etc/nixos/configuration.nix` using something like:  
 
-## Application List
-### My Other Commonly Used Applications (GUI)
-- GTK Themes Editing: lxappearance
-- QT Themes Editing: kvantum + qt5ct
+`sudo cp ./nixos/configuration.nix /etc/nixos/configuration.nix`.
+
+Then apply changes by running rebuild and switch:
+
+`sudo nixos-rebuild switch`
+
+Once changes have been applied manually setup panel, theming, shortcuts, widgets
+
+### Todo
+
+- Organize config file better (can break down from one large file to smaller files)
+- Consider making KDE settings (theming, shortcuts, etc) more automated (currently have to manually go into KDE settings to do so)
+
+### Config Notes
+
+Currently all dumped into one large config file.
+  
+Config file assumes have mounted drive and will be auto-mounted. Eg:
+
+``` bash
+
+fileSystems."/home/jamesyoung/Extra-Storage-01" = {
+    device = "/dev/disk/by-label/JamesStorage";
+    fsType = "ext4";
+    options = [ "nofail" ];
+  };
+
+```
+
+### My Application List
+
+#### My Other Commonly Used Applications (GUI)
+
 - Video Player: VLC, MPV
-- Browsers: Librewolf, Ungoogle Chromium
-- Text-Editors: Kate, NVIM
+- Browsers: Librewolf, Ungoogle Chromium, Firefox
+- Text-Editors: Kate, VIM, NVIM
 - IDE: VSCode
 - PDF Viewer: Okular
 - Image Viewer: Gwenview
 - Gaming
   - Launchers: Steam, Lutris
   - Emulators: Yuzu (RIP), Cemu (Wii), Ryujinx (Switch)
-- Graphics: 
+- Graphics:
   - 3D: Blender
   - Photo Editing: GIMP
   - Video Editing: KdenLive
@@ -48,22 +90,14 @@ The `awesome`, `qt5ct`, `rofi`, `kitty` directories also goes into `~/.config/`.
   - Diagrams: DrawIO, Excalidraw
 - Printing: CUPS
 - USB flashing: Balena Etcher
-- Screenshot Utility: coreshot
+- Screenshot Utility: Spectacle
 
-### Some Extra CLI Applications I use
-- tree
+#### Some Extra CLI Applications I use
+
 - neofetch (display system info)
 - tldr (simplify man pages)
 - tmux (terminal multiplexer)
-- xdotool (automate key presses)
 - htop (top but a little nicer)
 - yt-dlp (CLI youtube audio/video downloader, super useful)
 - neovim
-
-## Next Steps
-- Familiarize using Window Manager instead of DE (tiling, using keyboard more than mouse, etc.)
-- Modularize NixOS config file instead of one large config file
-- Improve AwesomeWM configs
-  - Improve and style topbar
-  - Maybe add bottom dock
-  - Personalize behaviour more in general
+- tree
