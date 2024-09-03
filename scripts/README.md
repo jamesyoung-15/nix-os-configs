@@ -17,5 +17,3 @@ View wakeup triggers
 ``` bash
 cat /proc/acpi/wakeup | grep enabled
 ```
-
-

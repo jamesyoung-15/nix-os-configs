@@ -104,10 +104,6 @@
   # remove  x11 ssh ask pass gui thing: https://github.com/NixOS/nixpkgs/issues/24311
   programs.ssh.askPassword = "";
 
-    # for balena etcher
-  nixpkgs.config.permittedInsecurePackages = [
-                "electron-19.1.9"
-              ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -296,7 +292,7 @@
     pkgs.catppuccin-cursors
     pkgs.papirus-icon-theme
     (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula" "purple"]; })
-    pkgs.tela-icon-theme
+    pkgs.dracula-icon-theme
     # (pkgs.whitesur-icon-theme.override { themeVariants = ["purple" "nord"];})
     # paper-icon-theme
     pkgs.capitaine-cursors
@@ -307,6 +303,7 @@
     pkgs.runelite
     pkgs.retroarch
     pkgs.ryujinx
+    pkgs.fusee-nano
 
     # Game Tools
     pkgs.mangohud
