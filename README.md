@@ -4,7 +4,7 @@ My desktop config files using NixOS.
 
 ## Preview
 
-![Floating Setup](./assets/20240830_KDESetup_1.png)
+![Floating Setup](./assets/20240830_KDESetup_4.png)
 
 ![Tiling Setup](./assets/20240830_KDESetup_2.png)
 
@@ -14,6 +14,7 @@ My desktop config files using NixOS.
 
 - OS: [NixOS](https://nixos.org/)
 - Desktop Environment: [KDE Plamsa 6](https://nixos.wiki/wiki/KDE)
+- Diplay Manager: LightDM
 - Shell: Bash
 - Terminal: [Konsole](https://konsole.kde.org/)
 - Tiling: [Krohnkite](https://github.com/anametologin/krohnkite)
@@ -21,7 +22,7 @@ My desktop config files using NixOS.
   - Global Theme: Breeze Dark
   - Colors: [Catppucin Mocha Lavender](https://github.com/catppuccin/kde)
   - Window Decoration: [Dracula](https://draculatheme.com/)
-  - Icons: [Tela Dracula Dark](https://github.com/vinceliuice/Tela-icon-theme)
+  - Icons: [Papirus Dark](https://github.com/vinceliuice/Tela-icon-theme)
   - Cursors: [Dracula Cursors](https://draculatheme.com/)
   - Wallpaper: See [here](./assets/PurpleMountain-Wallpaper.jpg)
 - KDE Panel Widgets (left to right):
@@ -31,6 +32,7 @@ My desktop config files using NixOS.
   - [Digital Clock](https://userbase.kde.org/Plasma/Clocks/en)
   - [Panel Colorizer](https://store.kde.org/p/2130967)
   - [System Tray](https://userbase.kde.org/Plasma/SystemTray)
+- Font: RobotoMono Nerd Font 10 pt
 
 ## Notes
 
