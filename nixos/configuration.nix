@@ -146,6 +146,7 @@
     pkgs.dig
     pkgs.rclone
     pkgs.tcpdump
+    pkgs.speedtest-cli
     # multimedia
     pkgs.feh
     pkgs.gif-for-cli
@@ -193,6 +194,7 @@
 
     # latex (using full, extremely large can use smaller if needed): https://nixos.wiki/wiki/TexLive#Installation
     pkgs.texliveFull
+    pkgs.pandoc
 
     # Programming Tools
     pkgs.hugo
