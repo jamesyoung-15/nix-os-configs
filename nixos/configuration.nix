@@ -168,7 +168,8 @@
     pkgs.qbittorrent
     # pkgs.kdePackages.merkuro
     # pkgs.etcher
-    pkgs.rpi-imager
+    pkgs.rpi-imager]
+    
     
 
     # Programming Languages
@@ -210,6 +211,9 @@
     # storage/databases
     # pkgs.minio
     # pkgs.minio-client
+
+    # virt tools
+    pkgs.virtualbox
 
     # embedded systems tools
     pkgs.arduino
