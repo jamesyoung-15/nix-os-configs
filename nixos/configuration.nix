@@ -168,7 +168,7 @@
     pkgs.qbittorrent
     # pkgs.kdePackages.merkuro
     # pkgs.etcher
-    pkgs.rpi-imager]
+    pkgs.rpi-imager
     
     
 
