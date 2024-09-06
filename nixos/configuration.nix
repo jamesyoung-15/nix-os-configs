@@ -147,6 +147,7 @@
     pkgs.rclone
     pkgs.tcpdump
     pkgs.speedtest-cli
+    pkgs.wireguard-tools
     # multimedia
     pkgs.feh
     pkgs.gif-for-cli
@@ -436,8 +437,10 @@
     ];  
     allowedUDPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  };  
+    ];
+    allowedUDPPorts = [51820]; # Wireguard  
+  };
+
 
   # Enable Pipewire (audio server)
   # rtkit is optional but recommended
