@@ -58,7 +58,7 @@
   users.users.jamesyoung = {
     isNormalUser = true;
     description = "James Young";
-    extraGroups = [ "networkmanager" "wheel" "docker" "storage" "audio" "jackaudio" "kvm" "dialout"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "storage" "audio" "jackaudio" "kvm" "dialout" "libvirtd"];
     packages = with pkgs; [];
   };
 
@@ -212,9 +212,6 @@
     # storage/databases
     # pkgs.minio
     # pkgs.minio-client
-
-    # virt tools
-    pkgs.virtualbox
 
     # embedded systems tools
     pkgs.arduino
@@ -408,6 +405,14 @@
   # enable virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+  services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
+
+  # enable virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.guest.enable = true;
+  virtualisation.virtualbox.guest.draganddrop = true;
+  users.extraGroups.vboxusers.members = [ "jamesyoung" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
