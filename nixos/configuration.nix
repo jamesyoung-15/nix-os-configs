@@ -157,6 +157,8 @@
     pkgs.mediainfo
     pkgs.ffmpeg-full
     pkgs.mp3info
+    # cloud
+    pkgs.awscli2
 
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
@@ -228,7 +230,6 @@
     # terminal
     pkgs.kitty
     # pkgs.kdePackages.konsole
-    # pkgs.alacritty
     
     # bluetooth
     # pkgs.bluez
