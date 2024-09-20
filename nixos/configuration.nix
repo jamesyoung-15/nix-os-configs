@@ -58,7 +58,7 @@
   users.users.jamesyoung = {
     isNormalUser = true;
     description = "James Young";
-    extraGroups = [ "networkmanager" "wheel" "docker" "storage" "audio" "jackaudio" "kvm" "dialout" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "storage" "audio" "jackaudio" "kvm" "dialout" "libvirtd" "openrazer"];
     packages = with pkgs; [];
   };
 
@@ -114,7 +114,8 @@
     git
     wget
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    pkgs.tldr
+    # pkgs.tldr
+    pkgs.tlrc
     pkgs.tmux
     pkgs.tree
     pkgs.screen
@@ -131,6 +132,7 @@
     # pkgs.parcellite
     pkgs.findutils
     pkgs.starship
+    pkgs.rename
 
     # cli utilities
     # process monitoring
@@ -164,6 +166,7 @@
     pkgs.kdePackages.kdeconnect-kde
     pkgs.gnome.gnome-disk-utility
     pkgs.piper
+    pkgs.polychromatic
     # pkgs.kdePackages.ark
     pkgs.keepassxc
     pkgs.syncthing
@@ -172,6 +175,7 @@
     # pkgs.kdePackages.merkuro
     # pkgs.etcher
     pkgs.rpi-imager
+    pkgs.krename
     
     
 
@@ -465,7 +469,7 @@
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   # services.blueman.enable = true; # only needed for WM or DE without bluetooth manager
-
+  
   # pipewire bluetooth support
   # environment.etc = {
   #   "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
@@ -478,6 +482,8 @@
   #   '';
   # };
 
+  # open razer
+  hardware.openrazer.enable = true; 
 
   # enable gnome keyring
   # services.gnome.gnome-keyring.enable = true;
