@@ -69,7 +69,7 @@ Once changes have been applied manually setup panel, theming, shortcuts, widgets
 - Image Viewer: Gwenview
 - Gaming
   - Launchers: Steam, Lutris
-  - Emulators: Yuzu (RIP), Cemu (Wii), Ryujinx (Switch)
+  - Emulators: Cemu (Wii), Yuzu (Switch RIP), Ryujinx (Switch RIP), Suyu (Switch)
 - Graphics:
   - 3D: Blender
   - Photo Editing: GIMP

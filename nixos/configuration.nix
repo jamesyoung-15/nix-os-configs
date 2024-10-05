@@ -240,13 +240,13 @@
     # pkgs.libsForQt5.bluedevil
 
     # audio
-    pkgs.pulseaudio
+    # pkgs.pulseaudio
     pkgs.pavucontrol
     # pkgs.ocenaudio
     pkgs.tenacity
     # pkgs.audacity
-    pkgs.alsa-utils
-    pkgs.pamixer
+    # pkgs.alsa-utils
+    # pkgs.pamixer
 
     # rofi (launcher)
     # (rofi.override { plugins = [ 
@@ -308,10 +308,10 @@
 
     # Games
     pkgs.cemu
-    # pkgs.yuzu
+    # pkgs.yuzu # rip (can download from flatpak)
     pkgs.runelite
     pkgs.retroarch
-    pkgs.ryujinx
+    # pkgs.ryujinx # rip (can download from flatpak)
     pkgs.fusee-nano
 
     # Game Tools
@@ -451,9 +451,13 @@
     allowedUDPPorts = [51820]; # Wireguard  
   };
 
+  # enable bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  # services.blueman.enable = true; # only needed for WM or DE without bluetooth manager
 
-  # Enable Pipewire (audio server)
-  # rtkit is optional but recommended
+
+  # Enable Pipewire (audio server), rtkit is optional but recommended
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -463,24 +467,18 @@
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
-
-
-  # enable bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  # services.blueman.enable = true; # only needed for WM or DE without bluetooth manager
   
   # pipewire bluetooth support
-  # environment.etc = {
-  #   "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-  #     bluez_monitor.properties = {
-  #       ["bluez5.enable-sbc-xq"] = true,
-  #       ["bluez5.enable-msbc"] = true,
-  #       ["bluez5.enable-hw-volume"] = true,
-  #       ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-  #     }
-  #   '';
-  # };
+  environment.etc = {
+    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+        ["bluez5.enable-hw-volume"] = true,
+        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+      }
+    '';
+  };
 
   # open razer
   hardware.openrazer.enable = true; 
