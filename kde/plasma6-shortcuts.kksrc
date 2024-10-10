@@ -19,17 +19,17 @@ Activate Next Tab=Ctrl+PgDown; Ctrl+]
 Activate Previous Tab=Ctrl+PgUp; Ctrl+[
 ActualSize=Ctrl+0
 AddBookmark=
-Back=Back; Alt+Left
+Back=Alt+Left; Back
 BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
 Clear=
-Close=Ctrl+Esc; Ctrl+W
+Close=Ctrl+W; Ctrl+Esc
 ConfigureNotifications=
 ConfigureToolbars=
-Copy=Ctrl+Ins; Ctrl+C
+Copy=Ctrl+C; Ctrl+Ins
 CreateFolder=F10
-Cut=Shift+Del; Ctrl+X
+Cut=Ctrl+X; Shift+Del
 DeleteFile=Shift+Del
 DeleteWordBack=Ctrl+Backspace
 DeleteWordForward=Ctrl+Del
@@ -46,14 +46,14 @@ FindPrev=Shift+F3
 FitToHeight=
 FitToPage=
 FitToWidth=
-Forward=Forward; Alt+Right
+Forward=Alt+Right; Forward
 ForwardWord=Ctrl+Right
-FullScreen=Meta+M
+FullScreen=
 Goto=
 GotoLine=Ctrl+G
 GotoPage=
 Help=F1
-Home=Home Page; Alt+Home
+Home=Alt+Home; Home Page
 KeyBindings=Ctrl+Alt+,
 Mail=
 MoveToTrash=Del
@@ -61,7 +61,7 @@ New=Ctrl+N
 Next=PgDown
 NextCompletion=Ctrl+Down
 Open=Ctrl+O
-OpenContextMenu=Menu; Shift+F10
+OpenContextMenu=Shift+F10; Menu
 OpenMainMenu=F10
 OpenRecent=
 Paste=Shift+Ins; Ctrl+V
@@ -95,7 +95,7 @@ Undo=Ctrl+Z
 Up=Alt+Up
 WhatsThis=Shift+F1
 Zoom=
-ZoomIn=Ctrl+=; Ctrl++
+ZoomIn=Ctrl++; Ctrl+=
 ZoomOut=Ctrl+-
 
 [code.desktop][Global Shortcuts]
@@ -114,7 +114,7 @@ Toggle Screen Reader On and Off=Meta+Alt+S
 [kcm_touchpad][Global Shortcuts]
 Disable Touchpad=Touchpad Off
 Enable Touchpad=Touchpad On
-Toggle Touchpad=Meta+Ctrl+Zenkaku Hankaku; Touchpad Toggle
+Toggle Touchpad=Touchpad Toggle; Meta+Ctrl+Zenkaku Hankaku
 
 [kmix][Global Shortcuts]
 decrease_microphone_volume=Microphone Volume Down
@@ -128,7 +128,7 @@ mute=Volume Mute
 
 [ksmserver][Global Shortcuts]
 Halt Without Confirmation=
-Lock Session=Ctrl+Alt+L; Screensaver; Meta+L
+Lock Session=Ctrl+Alt+L; Screensaver
 Log Out=Ctrl+Alt+Del
 Log Out Without Confirmation=
 Reboot=
@@ -142,24 +142,24 @@ Cycle Overview Opposite=
 Decrease Opacity=
 Edit Tiles=
 Expose=Ctrl+F9
-ExposeAll=Ctrl+F10; Launch (C)
+ExposeAll=Launch (C); Ctrl+F10
 ExposeClass=Ctrl+F7
 ExposeClassCurrentDesktop=
 Grid View=Meta+G
 Increase Opacity=
 Kill Window=Ctrl+Alt+Esc
 KrohnkiteBTreeLayout=
-KrohnkiteDecrease=
+KrohnkiteDecrease=Meta+Shift+D
 KrohnkiteFloatAll=
 KrohnkiteFloatingLayout=Meta+Shift+F
 KrohnkiteFocusDown=Meta+J
 KrohnkiteFocusLeft=Meta+H
 KrohnkiteFocusNext=
 KrohnkiteFocusPrev=Meta+,
-KrohnkiteFocusRight=
+KrohnkiteFocusRight=Meta+L
 KrohnkiteFocusUp=Meta+K
 KrohnkiteGrowHeight=Meta+Ctrl+J
-KrohnkiteIncrease=Meta+I
+KrohnkiteIncrease=Meta+Shift+I
 KrohnkiteMonocleLayout=
 KrohnkiteNextLayout=Meta+?
 KrohnkitePreviousLayout=Meta+|
@@ -167,9 +167,9 @@ KrohnkiteQuarterLayout=
 KrohnkiteRotate=
 KrohnkiteRotatePart=
 KrohnkiteSetMaster=Meta+Return
-KrohnkiteShiftDown=Meta+Ctrl+Alt+Down; Meta+Shift+J
+KrohnkiteShiftDown=Meta+Shift+J; Meta+Ctrl+Alt+Down
 KrohnkiteShiftLeft=Meta+Ctrl+Alt+Left; Meta+Shift+H
-KrohnkiteShiftRight=Meta+Ctrl+Alt+Right; Meta+Shift+L
+KrohnkiteShiftRight=Meta+Shift+L; Meta+Ctrl+Alt+Right
 KrohnkiteShiftUp=Meta+Ctrl+Alt+Up; Meta+Shift+K
 KrohnkiteShrinkHeight=Meta+Ctrl+K
 KrohnkiteShrinkWidth=Meta+Ctrl+H
@@ -188,9 +188,9 @@ MoveZoomDown=
 MoveZoomLeft=
 MoveZoomRight=
 MoveZoomUp=
-Overview=
+Overview=Meta+D
 Setup Window Shortcut=
-Show Desktop=Meta+D
+Show Desktop=
 Switch One Desktop Down=Meta+Down
 Switch One Desktop Up=Meta+Up
 Switch One Desktop to the Left=Meta+Left
@@ -248,13 +248,13 @@ Walk Through Windows of Current Application Alternative (Reverse)=
 Window Above Other Windows=
 Window Below Other Windows=
 Window Close=Alt+F4
-Window Fullscreen=Ctrl+Shift+Up
+Window Fullscreen=Meta+Alt+F; Meta+PgUp
 Window Grow Horizontal=
 Window Grow Vertical=
 Window Lower=
-Window Maximize=Meta+PgUp
+Window Maximize=Meta+M
 Window Maximize Horizontal=
-Window Maximize Vertical=
+Window Maximize Vertical=Meta+Shift+M
 Window Minimize=Meta+PgDown
 Window Move=
 Window Move Center=
@@ -342,10 +342,10 @@ _launch=Meta+T
 
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=Alt+Shift+F2
-_launch=Meta+R; Search; Alt+Space; Alt+F2
+_launch=Alt+Space; Meta+R; Search; Alt+F2
 
 [org.kde.kscreen.desktop][Global Shortcuts]
-ShowOSD=Display; Meta+P
+ShowOSD=Meta+P; Display
 
 [org.kde.plasma-systemmonitor.desktop][Global Shortcuts]
 _launch=Meta+Esc
@@ -355,8 +355,8 @@ _launch=Meta+.
 
 [org.kde.spectacle.desktop][Global Shortcuts]
 ActiveWindowScreenShot=Meta+Print
-CurrentMonitorScreenShot=
-FullScreenScreenShot=Ctrl+Print
+CurrentMonitorScreenShot=Ctrl+Print
+FullScreenScreenShot=
 OpenWithoutScreenshot=
 RecordRegion=Meta+Shift+R
 RecordScreen=Meta+Alt+R
