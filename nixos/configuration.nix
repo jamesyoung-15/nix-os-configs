@@ -89,7 +89,6 @@
   # keyboard
   i18n.inputMethod = {
      enabled = "fcitx5";
-     waylandFrontend = true;
      fcitx5.addons = with pkgs; [
        kdePackages.fcitx5-qt # fcitx5-gtk             # alternatively, kdePackages.fcitx5-qt
        fcitx5-chinese-addons  # table input method support
