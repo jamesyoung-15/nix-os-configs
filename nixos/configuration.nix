@@ -11,6 +11,11 @@
       <nixos-hardware/framework/13-inch/7040-amd>
     ];
 
+  # Framework Laptop configs
+  services.fwupd.enable = true; # firmware
+  services.power-profiles-daemon.enable = true; # battery, power-profile-daemon recommended for AMD over tlp
+  services.fprintd.enable = true; # fingerprint 
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -38,9 +43,6 @@
   services.desktopManager.plasma6.enable = true;
   #  services.displayManager.sddm.enable = true;
   
-  # for Framework firmware
-  services.fwupd.enable = true;
-
   services.xserver = {
     enable = true;
 
