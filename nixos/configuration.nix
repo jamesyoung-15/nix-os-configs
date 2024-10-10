@@ -370,24 +370,7 @@
   programs.virt-manager.enable = true;
   services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
 
-  # enable virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.draganddrop = true;
-  users.extraGroups.vboxusers.members = [ "jamesyoung" ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # List services that you want to enable:
-
-
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
