@@ -175,6 +175,7 @@
     # pkgs.kdePackages.merkuro
     # pkgs.etcher
     pkgs.rpi-imager
+    pkgs.mediawriter
     pkgs.krename
     
     
