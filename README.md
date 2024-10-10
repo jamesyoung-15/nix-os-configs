@@ -1,6 +1,6 @@
 # My NixOS Configs
 
-My desktop config files using NixOS.
+My laptop (Framework 13) config files using NixOS.
 
 ## Preview
 
