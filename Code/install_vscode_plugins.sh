@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-code --list-extensions | xargs -L 1 echo code --install-extension > plugin_list.txt
+while read line; do code --install-extension "$line"; done < vscode_plugin_list.txt
