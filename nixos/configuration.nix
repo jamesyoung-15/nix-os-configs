@@ -8,13 +8,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <nixos-hardware/framework/13-inch/7040-amd>
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "JamesNixDesktop"; # Define your hostname.
+  networking.hostName = "JamesNixLaptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -35,8 +36,11 @@
 
   # setup desktop environment
   services.desktopManager.plasma6.enable = true;
- #  services.displayManager.sddm.enable = true;
+  #  services.displayManager.sddm.enable = true;
   
+  # for Framework firmware
+  services.fwupd.enable = true;
+
   services.xserver = {
     enable = true;
 
@@ -80,22 +84,16 @@
     };
   };
 
-  # automount disks
-  fileSystems."/home/jamesyoung/Extra-Storage-01" = {
-    device = "/dev/disk/by-label/JamesStorage";
-    fsType = "ext4";
-    options = [ "nofail" ];
-  };
-
   # keyboard
   i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      libpinyin
-      uniemoji
-        
-    ];
-  };
+     enabled = "fcitx5";
+     waylandFrontend = true;
+     fcitx5.addons = with pkgs; [
+       kdePackages.fcitx5-qt # fcitx5-gtk             # alternatively, kdePackages.fcitx5-qt
+       fcitx5-chinese-addons  # table input method support
+       fcitx5-nord            # a color theme
+     ];
+   };
 
   # enable adb (Android)
   programs.adb.enable = true;
@@ -165,8 +163,8 @@
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
     pkgs.gnome.gnome-disk-utility
-    pkgs.piper
-    pkgs.polychromatic
+    # pkgs.piper
+    # pkgs.polychromatic
     # pkgs.kdePackages.ark
     pkgs.keepassxc
     pkgs.syncthing
@@ -207,18 +205,6 @@
     # Programming Tools
     pkgs.hugo
 
-    # containerization
-    # pkgs.minikube
-    # pkgs.k3s
-    # pkgs.kubernetes
-    # pkgs.faas-cli
-    # pkgs.kubernetes-helm
-    # pkgs.arkade
-
-    # storage/databases
-    # pkgs.minio
-    # pkgs.minio-client
-
     # embedded systems tools
     pkgs.arduino
     pkgs.platformio
@@ -234,10 +220,6 @@
     # terminal
     pkgs.kitty
     # pkgs.kdePackages.konsole
-    
-    # bluetooth
-    # pkgs.bluez
-    # pkgs.libsForQt5.bluedevil
 
     # audio
     # pkgs.pulseaudio
@@ -247,21 +229,6 @@
     # pkgs.audacity
     # pkgs.alsa-utils
     # pkgs.pamixer
-
-    # rofi (launcher)
-    # (rofi.override { plugins = [ 
-    #   rofi-emoji
-    #   rofi-power-menu
-    #   rofi-calc
-    #   rofi-screenshot
-    #   rofi-file-browser
-    # ]; })
-
-    # display packages
-    # pkgs.picom
-    # pkgs.nitrogen
-    # pkgs.arandr
-    # pkgs.autorandr
 
     # editors
     pkgs.neovim
@@ -282,12 +249,7 @@
 
     # screenshot, webcam, etc.
     # pkgs.libsForQt5.spectacle
-    pkgs.ksnip
-
-    # gtk config
-    # pkgs.lxappearance
-    # libsForQt5.qtstyleplugin-kvantum
-    # pkgs.libsForQt5.qt5ct
+    # pkgs.ksnip
 
     # gtk and qt themes
     (pkgs.catppuccin-kde.override { accents = ["lavender"]; flavour  = ["mocha"]; winDecStyles = ["modern"]; })
@@ -363,12 +325,6 @@
 
   ];
 
-  # enable thunar plugins
-  # programs.thunar.plugins = with pkgs.xfce; [
-  #   thunar-archive-plugin
-  #   thunar-volman
-  #   thunar-media-tags-plugin
-  # ];
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
   programs.dconf.enable = true;
@@ -401,7 +357,7 @@
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   # enable docker
@@ -482,9 +438,6 @@
 
   # open razer
   hardware.openrazer.enable = true; 
-
-  # enable gnome keyring
-  # services.gnome.gnome-keyring.enable = true;
 
   # Enable XDG Portal
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
