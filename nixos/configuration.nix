@@ -41,23 +41,10 @@
 
   # setup desktop environment
   services.desktopManager.plasma6.enable = true;
-  #  services.displayManager.sddm.enable = true;
-  
-  services.xserver = {
+  services.displayManager.sddm = {
     enable = true;
-
-    # Enable LightDM
-     displayManager = {
-       lightdm.enable = true;
-       lightdm.greeters.gtk.enable = true;
-       lightdm.greeters.gtk.theme.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
-       lightdm.greeters.gtk.iconTheme.name = "Papirus";
-       lightdm.greeters.gtk.cursorTheme.name = "Capitaine";
-    #  # lightdm.background = /home/jamesyoung/Pictures/Wallpapers/PurpleMoon-Wallpaper.jpg;
-    #   defaultSession = "plasma";
-     };
-
-    # wacom.enable = true;
+    enableHidpi = true;
+    wayland.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -260,6 +247,7 @@
     pkgs.dracula-theme
     pkgs.lightly-qt
     # pkgs.whitesur-kde
+    kdePackages.sddm-kcm # sddm theme
 
     # cursors, icons, etc.
     pkgs.catppuccin-cursors
