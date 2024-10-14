@@ -40,13 +40,16 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # setup desktop environment
+  services.xserver.enable = true;
+  services.xserver.dpi = 180;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm = {
     enable = true;
     enableHidpi = true;
     wayland.enable = true;
   };
-
+  services.displayManager.defaultSession = "plasma"; # plasma for wayland, plasmax11 for x11
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jamesyoung = {
     isNormalUser = true;
@@ -59,7 +62,12 @@
   nixpkgs.config.allowUnfree = true;
   
   # Change default editor from nano to neovim
-  environment.variables.EDITOR = "nvim";
+  environment.variables = {
+    EDITOR = "nvim";
+    GDK_SCALE=2; # x11 hidpi scaling
+    GDK_DPI_SCALE=0.5; # x11 text hidpi scaling
+    STEAM_FORCE_DESKTOPUI_SCALING=2; # steam hidpi scaling
+  };
 
   # bash setup
   programs.bash = {
@@ -69,6 +77,7 @@
       eval "$(starship init bash)"
       '';
     shellAliases = {
+      cemu = "GDK_DPI_SCALE=1 cemu";
       playbongocatgif = "librewolf https://media.tenor.com/fYg91qBpDdgAAAAi/bongo-cat-transparent.gif";
     };
   };
@@ -186,6 +195,7 @@
       python-pkgs.selenium
     ]))
     pkgs.jupyter
+    pkgs.typescript
 
     # latex (using full, extremely large can use smaller if needed): https://nixos.wiki/wiki/TexLive#Installation
     pkgs.texliveFull
@@ -311,10 +321,7 @@
     pkgs.discord
     pkgs.signal-desktop-beta
 
-  
-
   ];
-
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
   programs.dconf.enable = true;
@@ -429,8 +436,6 @@
   # Enable Flatpak
   services.flatpak.enable = true;
 
-
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -438,5 +443,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

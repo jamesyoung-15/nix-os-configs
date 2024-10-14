@@ -52,6 +52,14 @@ Then apply changes by running rebuild and switch:
 
 Once changes have been applied manually setup panel, theming, shortcuts, widgets. Optionally add Krohnkite for tiling support.
 
+### Fix HiDPI (Wayland/X11 Inconsistencies)
+
+Some X11 applications don't play nice on Plasma 6 with fractional scaling (mine set to 200%). Some examples are RuneLite, Cemu, etc. Setting `GDK_SCALE=2` and `GDK_DPI_SCALE=0.5` environment variables fixes most applications, but can break others (eg. Firefox font now really small due to `GDK_DPI_SCALE`, Cemu font too small and needs `GDK_DPI_SCALE=1`).
+
+One solution is to run certain applications with something like `GDK_DPI_SCALE=1 cemu`. Another is to do some manual configs (eg. Firefox change `layout.css.devPixelsPerPx`) or some workarounds listed below.
+
+Fix for steam is to export `STEAM_FORCE_DESKTOPUI_SCALING=2` environment variable. Fix for librewolf is to create custom css with `userChrome.css` and set font there.
+
 ### Todo
 
 - Organize config file better (can break down from one large file to smaller files)
