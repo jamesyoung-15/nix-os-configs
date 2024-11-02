@@ -290,7 +290,7 @@
     # office
     # pkgs.kdePackages.okular
     pkgs.onlyoffice-bin
-    # pkgs.libreoffice-bin
+    pkgs.libreoffice
     pkgs.zoom-us
 
     # note-taking, diagrams, etc.
