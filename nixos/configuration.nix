@@ -35,23 +35,10 @@
 
   # setup desktop environment
   services.desktopManager.plasma6.enable = true;
- #  services.displayManager.sddm.enable = true;
-  
-  services.xserver = {
+  services.displayManager.sddm = {
     enable = true;
-
-    # Enable LightDM
-     displayManager = {
-       lightdm.enable = true;
-       lightdm.greeters.gtk.enable = true;
-       lightdm.greeters.gtk.theme.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
-       lightdm.greeters.gtk.iconTheme.name = "Papirus";
-       lightdm.greeters.gtk.cursorTheme.name = "Capitaine";
-    #  # lightdm.background = /home/jamesyoung/Pictures/Wallpapers/PurpleMoon-Wallpaper.jpg;
-    #   defaultSession = "plasma";
-     };
-
-    # wacom.enable = true;
+    enableHidpi = true;
+    wayland.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -66,7 +53,12 @@
   nixpkgs.config.allowUnfree = true;
   
   # Change default editor from nano to neovim
-  environment.variables.EDITOR = "nvim";
+  environment.variables = {
+    EDITOR = "nvim";
+    # GDK_SCALE=2; # x11 hidpi scaling
+    # GDK_DPI_SCALE=0.5; # x11 text hidpi scaling
+    # STEAM_FORCE_DESKTOPUI_SCALING=2; # steam hidpi scaling
+  };
 
   # bash setup
   programs.bash = {
@@ -91,7 +83,7 @@
   i18n.inputMethod = {
      enabled = "fcitx5";
      fcitx5.addons = with pkgs; [
-       fcitx5-gtk             # alternatively, kdePackages.fcitx5-qt
+       kdePackages.fcitx5-qt # fcitx5-gtk             # alternatively, kdePackages.fcitx5-qt
        fcitx5-chinese-addons  # table input method support
        fcitx5-nord            # a color theme
      ];
@@ -108,7 +100,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-
     # General dev utils
     curl
     git
@@ -161,6 +152,8 @@
     pkgs.mp3info
     # cloud
     pkgs.awscli2
+    # Monitoring
+    # pkgs.lm_sensors
 
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
@@ -180,7 +173,7 @@
     
     
 
-    # Programming Languages
+    # Programming Languages/Libraries
     pkgs.jdk
     pkgs.rustc
     pkgs.go
@@ -200,6 +193,7 @@
       python-pkgs.selenium
     ]))
     pkgs.jupyter
+    pkgs.typescript
 
     # latex (using full, extremely large can use smaller if needed): https://nixos.wiki/wiki/TexLive#Installation
     pkgs.texliveFull
@@ -208,17 +202,23 @@
     # Programming Tools
     pkgs.hugo
 
-    # containerization
-    # pkgs.minikube
-    # pkgs.k3s
-    # pkgs.kubernetes
-    # pkgs.faas-cli
-    # pkgs.kubernetes-helm
-    # pkgs.arkade
-
-    # storage/databases
-    # pkgs.minio
-    # pkgs.minio-client
+    # iac
+    (pkgs.terraform.withPlugins(p: [ 
+      p.aws 
+      p.hcloud
+      p.azurerm
+      p.google
+      p.kubernetes
+      p.helm
+      p.docker
+      p.cloudflare
+      p.github
+      p.grafana
+      p.proxmox
+    ]))
+    pkgs.terraform-ls
+    pkgs.pulumi-bin
+    pkgs.opentofu
 
     # embedded systems tools
     pkgs.arduino
@@ -235,19 +235,12 @@
     # terminal
     pkgs.kitty
     # pkgs.kdePackages.konsole
-    
-    # bluetooth
-    # pkgs.bluez
-    # pkgs.libsForQt5.bluedevil
 
     # audio
-    # pkgs.pulseaudio
     pkgs.pavucontrol
     # pkgs.ocenaudio
     pkgs.tenacity
     # pkgs.audacity
-    # pkgs.alsa-utils
-    # pkgs.pamixer
 
     # rofi (launcher)
     # (rofi.override { plugins = [ 
@@ -257,12 +250,6 @@
     #   rofi-screenshot
     #   rofi-file-browser
     # ]; })
-
-    # display packages
-    # pkgs.picom
-    # pkgs.nitrogen
-    # pkgs.arandr
-    # pkgs.autorandr
 
     # editors
     pkgs.neovim
@@ -282,13 +269,7 @@
     pkgs.ungoogled-chromium
 
     # screenshot, webcam, etc.
-    # pkgs.libsForQt5.spectacle
     pkgs.ksnip
-
-    # gtk config
-    # pkgs.lxappearance
-    # libsForQt5.qtstyleplugin-kvantum
-    # pkgs.libsForQt5.qt5ct
 
     # gtk and qt themes
     (pkgs.catppuccin-kde.override { accents = ["lavender"]; flavour  = ["mocha"]; winDecStyles = ["modern"]; })
@@ -297,6 +278,7 @@
     pkgs.dracula-theme
     pkgs.lightly-qt
     # pkgs.whitesur-kde
+    kdePackages.sddm-kcm # sddm theme
 
     # cursors, icons, etc.
     pkgs.catppuccin-cursors
@@ -329,7 +311,7 @@
     # office
     # pkgs.kdePackages.okular
     pkgs.onlyoffice-bin
-    # pkgs.libreoffice-bin
+    pkgs.libreoffice
     pkgs.zoom-us
 
     # note-taking, diagrams, etc.
@@ -359,8 +341,6 @@
     # social media
     pkgs.discord
     pkgs.signal-desktop-beta
-
-  
 
   ];
 
@@ -402,7 +382,7 @@
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   # enable docker
@@ -493,5 +473,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
