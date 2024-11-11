@@ -77,6 +77,7 @@
       eval "$(starship init bash)"
       '';
     shellAliases = {
+      # dpi scaling
       cemu = "GDK_DPI_SCALE=1 cemu";
       playbongocatgif = "librewolf https://media.tenor.com/fYg91qBpDdgAAAAi/bongo-cat-transparent.gif";
     };
@@ -154,6 +155,11 @@
     pkgs.mediainfo
     pkgs.ffmpeg-full
     pkgs.mp3info
+    # benchmarking
+    pkgs.rt-tests
+    pkgs.stress-ng
+    pkgs.sysbench
+    pkgs.phoronix-test-suite
     # cloud
     pkgs.awscli2
 
@@ -169,13 +175,13 @@
     pkgs.qbittorrent
     # pkgs.kdePackages.merkuro
     # pkgs.etcher
-    pkgs.rpi-imager
     pkgs.mediawriter
+    pkgs.rpi-imager
     pkgs.krename
     
     
 
-    # Programming Languages
+    # Programming Languages/Libraries
     pkgs.jdk
     pkgs.rustc
     pkgs.go
@@ -244,8 +250,6 @@
     # pkgs.ocenaudio
     pkgs.tenacity
     # pkgs.audacity
-    # pkgs.alsa-utils
-    # pkgs.pamixer
 
     # editors
     pkgs.neovim
@@ -265,8 +269,7 @@
     pkgs.ungoogled-chromium
 
     # screenshot, webcam, etc.
-    # pkgs.libsForQt5.spectacle
-    # pkgs.ksnip
+    pkgs.ksnip
 
     # gtk and qt themes
     (pkgs.catppuccin-kde.override { accents = ["lavender"]; flavour  = ["mocha"]; winDecStyles = ["modern"]; })
@@ -449,7 +452,6 @@
 
   };
   # xdg.portal.enable = true;
-
 
   # Enable Flatpak
   services.flatpak.enable = true;
