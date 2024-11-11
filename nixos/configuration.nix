@@ -204,6 +204,24 @@
     # Programming Tools
     pkgs.hugo
 
+    # iac
+    (pkgs.terraform.withPlugins(p: [ 
+      p.aws 
+      p.hcloud
+      p.azurerm
+      p.google
+      p.kubernetes
+      p.helm
+      p.docker
+      p.cloudflare
+      p.github
+      p.grafana
+      p.proxmox
+    ]))
+    pkgs.terraform-ls
+    pkgs.pulumi-bin
+    pkgs.opentofu
+
     # embedded systems tools
     pkgs.arduino
     pkgs.platformio
