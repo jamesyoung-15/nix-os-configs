@@ -40,6 +40,7 @@
     enableHidpi = true;
     wayland.enable = true;
   };
+  services.displayManager.defaultSession = "plasma"; # plasma for wayland, plasmax11 for x11
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jamesyoung = {
@@ -247,15 +248,6 @@
     pkgs.tenacity
     # pkgs.audacity
 
-    # rofi (launcher)
-    # (rofi.override { plugins = [ 
-    #   rofi-emoji
-    #   rofi-power-menu
-    #   rofi-calc
-    #   rofi-screenshot
-    #   rofi-file-browser
-    # ]; })
-
     # editors
     pkgs.neovim
     pkgs.vscode
@@ -348,13 +340,6 @@
     pkgs.signal-desktop-beta
 
   ];
-
-  # enable thunar plugins
-  # programs.thunar.plugins = with pkgs.xfce; [
-  #   thunar-archive-plugin
-  #   thunar-volman
-  #   thunar-media-tags-plugin
-  # ];
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
   programs.dconf.enable = true;
@@ -451,9 +436,6 @@
 
   # open razer
   hardware.openrazer.enable = true; 
-
-  # enable gnome keyring
-  # services.gnome.gnome-keyring.enable = true;
 
   # Enable XDG Portal
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
