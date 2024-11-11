@@ -150,6 +150,11 @@
     pkgs.mediainfo
     pkgs.ffmpeg-full
     pkgs.mp3info
+    # benchmarking
+    pkgs.rt-tests
+    pkgs.stress-ng
+    pkgs.sysbench
+    pkgs.phoronix-test-suite
     # cloud
     pkgs.awscli2
     # Monitoring
