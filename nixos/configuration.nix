@@ -159,7 +159,7 @@
     # cloud
     pkgs.awscli2
     # Monitoring
-    # pkgs.lm_sensors
+    pkgs.lm_sensors
 
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
@@ -221,6 +221,14 @@
       p.github
       p.grafana
       p.proxmox
+      p.random
+      p.local
+      p.null
+      p.time
+      p.http
+      p.external
+      p.vault
+      p.tls
     ]))
     pkgs.terraform-ls
     pkgs.pulumi-bin
@@ -313,7 +321,8 @@
 
     # note-taking, diagrams, etc.
     # pkgs.joplin-desktop
-    # pkgs.silverbullet
+    pkgs.logseq
+    pkgs.silverbullet
     pkgs.drawio
     pkgs.rnote
     pkgs.xournalpp
@@ -340,6 +349,11 @@
     pkgs.signal-desktop-beta
 
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+                "qbittorrent-4.6.4"
+              ];
+
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
   programs.dconf.enable = true;
