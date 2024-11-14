@@ -133,6 +133,8 @@
     pkgs.busybox
     pkgs.zip
     pkgs.nix-tree
+    # sensor monitoring
+    pkgs.lm_sensors
     # networking
     pkgs.nmap
     pkgs.iperf
@@ -158,8 +160,6 @@
     pkgs.phoronix-test-suite
     # cloud
     pkgs.awscli2
-    # Monitoring
-    pkgs.lm_sensors
 
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
@@ -170,7 +170,6 @@
     pkgs.keepassxc
     pkgs.syncthing
     # pkgs.qbittorrent
-    pkgs.qbittorrent
     # pkgs.kdePackages.merkuro
     # pkgs.etcher
     pkgs.mediawriter
@@ -321,7 +320,7 @@
 
     # note-taking, diagrams, etc.
     # pkgs.joplin-desktop
-    pkgs.logseq
+    # pkgs.logseq
     pkgs.silverbullet
     pkgs.drawio
     pkgs.rnote
@@ -333,7 +332,10 @@
     pkgs.libresprite
     pkgs.kdePackages.kdenlive
     pkgs.glaxnimate
+    pkgs.gimp-with-plugins
     # pkgs.kdePackages.gwenview
+
+    # Recording
     pkgs.obs-studio
     (pkgs.wrapOBS {
       plugins = with pkgs.obs-studio-plugins; [
@@ -342,18 +344,13 @@
         obs-pipewire-audio-capture
       ];
     })
-    pkgs.gimp-with-plugins
+    pkgs.snapshot
 
     # social media
     pkgs.discord
     pkgs.signal-desktop-beta
 
   ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-                "qbittorrent-4.6.4"
-              ];
-
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
   programs.dconf.enable = true;
