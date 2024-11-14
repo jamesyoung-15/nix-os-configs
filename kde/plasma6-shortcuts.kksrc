@@ -2,13 +2,15 @@
 switch-to-activity-6f6060c0-cbae-4af4-806c-70af359cd40e=
 
 [Clementine][Global Shortcuts]
-next_album=Shift+Media Next
-next_track=
-play_pause=
-prev_track=
+next_album=
+next_track=Ctrl+Alt+Right
+play_pause=Ctrl+Alt+Space
+prev_track=Ctrl+Alt+Left
 stop=
 
 [KDE Keyboard Layout Switcher][Global Shortcuts]
+Switch keyboard layout to Chinese=
+Switch keyboard layout to English (US)=
 Switch to Last-Used Keyboard Layout=Meta+Alt+L
 Switch to Next Keyboard Layout=Ctrl+Alt+K
 
@@ -19,15 +21,15 @@ Activate Next Tab=Ctrl+PgDown; Ctrl+]
 Activate Previous Tab=Ctrl+PgUp; Ctrl+[
 ActualSize=Ctrl+0
 AddBookmark=
-Back=Alt+Left; Back
+Back=Back; Alt+Left
 BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
 Clear=
-Close=Ctrl+W; Ctrl+Esc
+Close=Ctrl+Esc; Ctrl+W
 ConfigureNotifications=
 ConfigureToolbars=
-Copy=Ctrl+C; Ctrl+Ins
+Copy=Ctrl+Ins; Ctrl+C
 CreateFolder=F10
 Cut=Ctrl+X; Shift+Del
 DeleteFile=Shift+Del
@@ -53,7 +55,7 @@ Goto=
 GotoLine=Ctrl+G
 GotoPage=
 Help=F1
-Home=Alt+Home; Home Page
+Home=Home Page; Alt+Home
 KeyBindings=Ctrl+Alt+,
 Mail=
 MoveToTrash=Del
@@ -64,7 +66,7 @@ Open=Ctrl+O
 OpenContextMenu=Shift+F10; Menu
 OpenMainMenu=F10
 OpenRecent=
-Paste=Shift+Ins; Ctrl+V
+Paste=Ctrl+V; Shift+Ins
 Paste Selection=Ctrl+Shift+Ins
 Preferences=Ctrl+Shift+,
 PrevCompletion=Ctrl+Up
@@ -83,7 +85,7 @@ RotateUp=Up
 Save=Ctrl+S
 SaveAs=Ctrl+Shift+S
 SelectAll=Ctrl+A
-ShowHideHiddenFiles=Alt+.; Ctrl+H
+ShowHideHiddenFiles=Ctrl+H; Alt+.
 ShowMenubar=Ctrl+M
 ShowStatusbar=
 ShowToolbar=
@@ -123,7 +125,7 @@ decrease_volume_small=Shift+Volume Down
 increase_microphone_volume=Microphone Volume Up
 increase_volume=Volume Up
 increase_volume_small=Shift+Volume Up
-mic_mute=Meta+Volume Mute; Microphone Mute
+mic_mute=Microphone Mute; Meta+Volume Mute
 mute=Volume Mute
 
 [ksmserver][Global Shortcuts]
@@ -131,7 +133,7 @@ Halt Without Confirmation=
 Lock Session=Ctrl+Alt+L; Screensaver
 Log Out=Ctrl+Alt+Del
 Log Out Without Confirmation=
-Reboot=
+Reboot=Ctrl+Alt+B
 Reboot Without Confirmation=
 Shut Down=
 
@@ -170,12 +172,12 @@ KrohnkiteSetMaster=Meta+Return
 KrohnkiteShiftDown=Meta+Shift+J; Meta+Ctrl+Alt+Down
 KrohnkiteShiftLeft=Meta+Ctrl+Alt+Left; Meta+Shift+H
 KrohnkiteShiftRight=Meta+Shift+L; Meta+Ctrl+Alt+Right
-KrohnkiteShiftUp=Meta+Ctrl+Alt+Up; Meta+Shift+K
+KrohnkiteShiftUp=Meta+Shift+K; Meta+Ctrl+Alt+Up
 KrohnkiteShrinkHeight=Meta+Ctrl+K
 KrohnkiteShrinkWidth=Meta+Ctrl+H
 KrohnkiteSpiralLayout=
 KrohnkiteSpreadLayout=
-KrohnkiteStackedLayout=
+KrohnkiteStackedLayout=Ctrl+Shift+Space
 KrohnkiteStairLayout=
 KrohnkiteTileLayout=Meta+Ctrl+Space
 KrohnkiteToggleFloat=Meta+F
@@ -342,7 +344,7 @@ _launch=Meta+T
 
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=Alt+Shift+F2
-_launch=Alt+Space; Meta+R; Search; Alt+F2
+_launch=Meta+R; Search; Alt+Space; Alt+F2
 
 [org.kde.kscreen.desktop][Global Shortcuts]
 ShowOSD=Meta+P; Display
@@ -421,13 +423,3 @@ kcm-lookandfeel=
 kcm-powerdevilprofilesconfig=
 kcm-screenlocker=
 kcm-users=
-
-[wacomtablet][Global Shortcuts]
-Map to fullscreen=Meta+Ctrl+F
-Map to screen 1=Meta+Ctrl+1
-Map to screen 2=Meta+Ctrl+2
-Next Profile=Meta+Ctrl+N
-Previous Profile=Meta+Ctrl+P
-Toggle screen map selection=Meta+Ctrl+M
-Toggle stylus mode=Meta+Ctrl+S
-Toggle touch tool=Meta+Ctrl+T

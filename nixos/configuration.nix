@@ -103,8 +103,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-
+ environment.systemPackages = with pkgs; [
     # General dev utils
     curl
     git
@@ -137,6 +136,8 @@
     pkgs.busybox
     pkgs.zip
     pkgs.nix-tree
+    # sensor monitoring
+    pkgs.lm_sensors
     # networking
     pkgs.nmap
     pkgs.iperf
@@ -166,13 +167,12 @@
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
     pkgs.gnome.gnome-disk-utility
-    # pkgs.piper
-    # pkgs.polychromatic
+    pkgs.piper
+    pkgs.polychromatic
     # pkgs.kdePackages.ark
     pkgs.keepassxc
     pkgs.syncthing
     # pkgs.qbittorrent
-    pkgs.qbittorrent
     # pkgs.kdePackages.merkuro
     # pkgs.etcher
     pkgs.mediawriter
@@ -223,6 +223,14 @@
       p.github
       p.grafana
       p.proxmox
+      p.random
+      p.local
+      p.null
+      p.time
+      p.http
+      p.external
+      p.vault
+      p.tls
     ]))
     pkgs.terraform-ls
     pkgs.pulumi-bin
@@ -245,7 +253,6 @@
     # pkgs.kdePackages.konsole
 
     # audio
-    # pkgs.pulseaudio
     pkgs.pavucontrol
     # pkgs.ocenaudio
     pkgs.tenacity
@@ -316,7 +323,8 @@
 
     # note-taking, diagrams, etc.
     # pkgs.joplin-desktop
-    # pkgs.silverbullet
+    # pkgs.logseq
+    pkgs.silverbullet
     pkgs.drawio
     pkgs.rnote
     pkgs.xournalpp
@@ -327,7 +335,10 @@
     pkgs.libresprite
     pkgs.kdePackages.kdenlive
     pkgs.glaxnimate
+    pkgs.gimp-with-plugins
     # pkgs.kdePackages.gwenview
+
+    # Recording
     pkgs.obs-studio
     (pkgs.wrapOBS {
       plugins = with pkgs.obs-studio-plugins; [
@@ -336,7 +347,7 @@
         obs-pipewire-audio-capture
       ];
     })
-    pkgs.gimp-with-plugins
+    pkgs.snapshot
 
     # social media
     pkgs.discord
@@ -370,6 +381,31 @@
     # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Hack" ]; })
   ];
 
+  # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
+  programs.dconf.enable = true;
+
+  # file mounting permissions
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
+
+  # Fonts
+  fonts.fontconfig.enable = true;
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    roboto
+    nerdfonts
+    # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Hack" ]; })
+  ];
 
   # Steam Setup
   programs.steam = {
