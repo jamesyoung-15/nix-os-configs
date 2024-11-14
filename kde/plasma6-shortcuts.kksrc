@@ -17,19 +17,19 @@ Switch to Next Keyboard Layout=Ctrl+Alt+K
 [StandardShortcuts]
 AboutApp=
 AboutKDE=
-Activate Next Tab=Ctrl+]; Ctrl+PgDown
+Activate Next Tab=Ctrl+PgDown; Ctrl+]
 Activate Previous Tab=Ctrl+PgUp; Ctrl+[
 ActualSize=Ctrl+0
 AddBookmark=
-Back=Alt+Left; Back
+Back=Back; Alt+Left
 BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
 Clear=
-Close=Ctrl+W; Ctrl+Esc
+Close=Ctrl+Esc; Ctrl+W
 ConfigureNotifications=
 ConfigureToolbars=
-Copy=Ctrl+C; Ctrl+Ins
+Copy=Ctrl+Ins; Ctrl+C
 CreateFolder=F10
 Cut=Ctrl+X; Shift+Del
 DeleteFile=Shift+Del
@@ -75,7 +75,7 @@ PrintPreview=
 Prior=PgUp
 Quit=Ctrl+Q
 Redo=Ctrl+Shift+Z
-Reload=Refresh; F5
+Reload=F5; Refresh
 RenameFile=F2
 Replace=Ctrl+R
 ReportBug=
@@ -85,7 +85,7 @@ RotateUp=Up
 Save=Ctrl+S
 SaveAs=Ctrl+Shift+S
 SelectAll=Ctrl+A
-ShowHideHiddenFiles=Alt+.; Ctrl+H
+ShowHideHiddenFiles=Ctrl+H; Alt+.
 ShowMenubar=Ctrl+M
 ShowStatusbar=
 ShowToolbar=
@@ -169,7 +169,7 @@ KrohnkiteQuarterLayout=
 KrohnkiteRotate=
 KrohnkiteRotatePart=
 KrohnkiteSetMaster=Meta+Return
-KrohnkiteShiftDown=Meta+Ctrl+Alt+Down; Meta+Shift+J
+KrohnkiteShiftDown=Meta+Shift+J; Meta+Ctrl+Alt+Down
 KrohnkiteShiftLeft=Meta+Ctrl+Alt+Left; Meta+Shift+H
 KrohnkiteShiftRight=Meta+Shift+L; Meta+Ctrl+Alt+Right
 KrohnkiteShiftUp=Meta+Shift+K; Meta+Ctrl+Alt+Up
@@ -344,7 +344,7 @@ _launch=Meta+T
 
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=Alt+Shift+F2
-_launch=Meta+R; Alt+Space; Search; Alt+F2
+_launch=Meta+R; Search; Alt+Space; Alt+F2
 
 [org.kde.kscreen.desktop][Global Shortcuts]
 ShowOSD=Meta+P; Display
@@ -423,13 +423,3 @@ kcm-lookandfeel=
 kcm-powerdevilprofilesconfig=
 kcm-screenlocker=
 kcm-users=
-
-[wacomtablet][Global Shortcuts]
-Map to fullscreen=Meta+Ctrl+F
-Map to screen 1=Meta+Ctrl+1
-Map to screen 2=Meta+Ctrl+2
-Next Profile=Meta+Ctrl+N
-Previous Profile=Meta+Ctrl+P
-Toggle screen map selection=Meta+Ctrl+M
-Toggle stylus mode=Meta+Ctrl+S
-Toggle touch tool=Meta+Ctrl+T
