@@ -1,0 +1,4 @@
+Logseqcom.logseq.Logseq
+Joplinnet.cozic.joplin_desktop
+qBittorrentorg.qbittorrent.qBittorrent
+Ryujinxorg.ryujinx.Ryujinx
