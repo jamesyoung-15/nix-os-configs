@@ -128,6 +128,8 @@
     pkgs.findutils
     pkgs.starship
     pkgs.rename
+    # clipboard
+    pkgs.wl-clipboard-rs
 
     # cli utilities
     # process monitoring
