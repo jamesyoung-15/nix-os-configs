@@ -90,6 +90,13 @@
      ];
    };
 
+  # disable wakeup trigger for amd usb controller
+  services.udev.extraRules = ''
+    ACTION=="add" SUBSYSTEM=="pci" ATTR{vendor}=="0x1022" ATTR{device}=="0x15b6" ATTR{power/wakeup}="disabled"
+    ACTION=="add" SUBSYSTEM=="pci" ATTR{vendor}=="0x1022" ATTR{device}=="0x15b7" ATTR{power/wakeup}="disabled"
+    ACTION=="add" SUBSYSTEM=="pci" ATTR{vendor}=="0x1022" ATTR{device}=="0x15b8" ATTR{power/wakeup}="disabled"
+  '';
+
   # enable adb (Android)
   programs.adb.enable = true;
 
@@ -232,6 +239,7 @@
       p.tls
     ]))
     pkgs.terraform-ls
+    pkgs.vault-bin
     pkgs.pulumi-bin
     pkgs.opentofu
 
