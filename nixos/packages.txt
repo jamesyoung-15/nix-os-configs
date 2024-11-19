@@ -1,0 +1,261 @@
+  # START list of packages
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    # General dev utils
+    curl
+    git
+    wget
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # pkgs.tldr
+    pkgs.tlrc
+    pkgs.tmux
+    pkgs.tree
+    pkgs.screen
+    pkgs.gdb
+    pkgs.valgrind
+    pkgs.direnv
+    
+    # system utils
+    pkgs.neofetch
+    pkgs.appimage-run
+    # pkgs.xdotool
+    pkgs.ydotool
+    pkgs.killall
+    # pkgs.parcellite
+    pkgs.findutils
+    pkgs.starship
+    pkgs.rename
+    # clipboard
+    pkgs.wl-clipboard-rs
+
+    # cli utilities
+    # process monitoring
+    pkgs.htop
+    pkgs.btop
+    pkgs.busybox
+    pkgs.zip
+    pkgs.nix-tree
+    # sensor monitoring
+    pkgs.lm_sensors
+    # networking
+    pkgs.nmap
+    pkgs.iperf
+    pkgs.iperf2
+    pkgs.dig
+    pkgs.rclone
+    pkgs.tcpdump
+    pkgs.speedtest-cli
+    pkgs.wireguard-tools
+    # multimedia
+    pkgs.feh
+    pkgs.gif-for-cli
+    pkgs.imagemagick
+    pkgs.playerctl
+    pkgs.yt-dlp
+    pkgs.mediainfo
+    pkgs.ffmpeg-full
+    pkgs.mp3info
+    # benchmarking
+    pkgs.rt-tests
+    pkgs.stress-ng
+    pkgs.sysbench
+    pkgs.phoronix-test-suite
+    # cloud
+    pkgs.awscli2
+
+    # gui utilities
+    pkgs.kdePackages.kdeconnect-kde
+    pkgs.gnome.gnome-disk-utility
+    pkgs.piper
+    pkgs.polychromatic
+    # pkgs.kdePackages.ark
+    pkgs.keepassxc
+    pkgs.syncthing
+    # pkgs.qbittorrent # had to remove b/c install error, using flatpak for now
+    # pkgs.kdePackages.merkuro
+    
+    # Disk utilities
+    # pkgs.etcher
+    pkgs.mediawriter
+    pkgs.rpi-imager
+    pkgs.krename
+    pkgs.ventoy-full
+    
+    
+
+    # Programming Languages/Libraries
+    pkgs.jdk
+    pkgs.rustc
+    pkgs.go
+    pkgs.nodePackages_latest.nodejs
+    (pkgs.python3.withPackages (python-pkgs: [
+      python-pkgs.pip
+      python-pkgs.flask
+      python-pkgs.numpy
+      python-pkgs.fastapi
+      python-pkgs.pandas
+      python-pkgs.requests
+      python-pkgs.ipykernel
+      python-pkgs.matplotlib
+      python-pkgs.jupyter
+      python-pkgs.pillow
+      python-pkgs.pytest
+      python-pkgs.selenium
+    ]))
+    pkgs.jupyter
+    pkgs.typescript
+
+    # latex (using full, extremely large can use smaller if needed): https://nixos.wiki/wiki/TexLive#Installation
+    pkgs.texliveFull
+    pkgs.pandoc
+
+    # Programming Tools
+    pkgs.hugo
+
+    # iac
+    (pkgs.terraform.withPlugins(p: [ 
+      p.aws 
+      p.hcloud
+      p.azurerm
+      p.google
+      p.kubernetes
+      p.helm
+      p.docker
+      p.cloudflare
+      p.github
+      p.grafana
+      p.proxmox
+      p.random
+      p.local
+      p.null
+      p.time
+      p.http
+      p.external
+      p.vault
+      p.tls
+    ]))
+    pkgs.terraform-ls
+    pkgs.vault-bin
+    pkgs.pulumi-bin
+    pkgs.opentofu
+
+    # embedded systems tools
+    pkgs.arduino
+    pkgs.platformio
+    pkgs.platformio-core
+    # pkgs.stm32cubemx
+
+    # stylus tablet support
+    pkgs.libwacom
+    pkgs.xf86_input_wacom
+    pkgs.input-remapper
+    pkgs.opentabletdriver
+
+    # terminal
+    pkgs.kitty
+    # pkgs.kdePackages.konsole
+
+    # audio
+    pkgs.pavucontrol
+    # pkgs.ocenaudio
+    pkgs.tenacity
+    # pkgs.audacity
+
+    # editors
+    pkgs.neovim
+    pkgs.vscode
+    # pkgs.kdePackages.kate
+
+    # media players
+    pkgs.vlc
+    pkgs.mpv
+    pkgs.clementine
+    pkgs.libvlc
+    pkgs.qmplay2
+
+    # browsers
+    pkgs.firefox-bin
+    pkgs.librewolf
+    pkgs.ungoogled-chromium
+
+    # screenshot, webcam, etc.
+    pkgs.ksnip
+
+    # gtk and qt themes
+    (pkgs.catppuccin-kde.override { accents = ["lavender"]; flavour  = ["mocha"]; winDecStyles = ["modern"]; })
+    (pkgs.catppuccin-gtk.override { accents = ["lavender"]; variant = "mocha"; size = "standard";  })
+    pkgs.catppuccin-kvantum
+    pkgs.dracula-theme
+    pkgs.lightly-qt
+    # pkgs.whitesur-kde
+    kdePackages.sddm-kcm # sddm theme
+
+    # cursors, icons, etc.
+    pkgs.catppuccin-cursors
+    pkgs.papirus-icon-theme
+    (pkgs.tela-circle-icon-theme.override { colorVariants = ["dracula" "purple"]; })
+    pkgs.dracula-icon-theme
+    # (pkgs.whitesur-icon-theme.override { themeVariants = ["purple" "nord"];})
+    # paper-icon-theme
+    pkgs.capitaine-cursors
+
+    # Games
+    pkgs.cemu
+    # pkgs.yuzu # rip (can download from flatpak)
+    pkgs.runelite
+    pkgs.retroarch
+    # pkgs.ryujinx # rip (can download from flatpak)
+    pkgs.fusee-nano
+
+    # Game Tools
+    pkgs.mangohud
+    pkgs.goverlay
+    pkgs.lutris
+    wineWowPackages.stable
+    winetricks
+
+    # epub
+    pkgs.calibre
+    pkgs.calibre-web
+
+    # office
+    # pkgs.kdePackages.okular
+    pkgs.onlyoffice-bin
+    pkgs.libreoffice
+    pkgs.zoom-us
+
+    # note-taking, diagrams, etc.
+    # pkgs.joplin-desktop # using flatpak for now as version is old
+    # pkgs.logseq
+    pkgs.silverbullet
+    pkgs.drawio
+    pkgs.rnote
+    pkgs.xournalpp
+    pkgs.anki
+
+    # graphics
+    pkgs.blender
+    pkgs.libresprite
+    pkgs.kdePackages.kdenlive
+    pkgs.glaxnimate
+    pkgs.gimp-with-plugins
+    # pkgs.kdePackages.gwenview
+
+    # Recording
+    pkgs.obs-studio
+    (pkgs.wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+      ];
+    })
+    pkgs.snapshot
+
+    # social media
+    pkgs.discord
+    pkgs.signal-desktop-beta
+
+  ];
+  # END list of packages
