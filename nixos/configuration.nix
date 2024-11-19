@@ -101,6 +101,7 @@
   programs.ssh.askPassword = "";
 
 
+    # START list of packages
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -174,15 +175,16 @@
     # pkgs.kdePackages.ark
     pkgs.keepassxc
     pkgs.syncthing
-    # pkgs.qbittorrent
+    # pkgs.qbittorrent # had to remove b/c install error, using flatpak for now
     # pkgs.kdePackages.merkuro
+    
+    # Disk utilities
     # pkgs.etcher
     pkgs.mediawriter
     pkgs.rpi-imager
     pkgs.krename
+    pkgs.ventoy-full
     
-    
-
     # Programming Languages/Libraries
     pkgs.jdk
     pkgs.rustc
@@ -235,6 +237,7 @@
       p.tls
     ]))
     pkgs.terraform-ls
+    pkgs.vault-bin
     pkgs.pulumi-bin
     pkgs.opentofu
 
@@ -324,7 +327,7 @@
     pkgs.zoom-us
 
     # note-taking, diagrams, etc.
-    # pkgs.joplin-desktop
+    # pkgs.joplin-desktop # using flatpak for now as version is old
     # pkgs.logseq
     pkgs.silverbullet
     pkgs.drawio
@@ -356,6 +359,7 @@
     pkgs.signal-desktop-beta
 
   ];
+  # END list of packages
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
   programs.dconf.enable = true;
