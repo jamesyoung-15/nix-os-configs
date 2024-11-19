@@ -191,8 +191,6 @@
     pkgs.krename
     pkgs.ventoy-full
     
-    
-
     # Programming Languages/Libraries
     pkgs.jdk
     pkgs.rustc
