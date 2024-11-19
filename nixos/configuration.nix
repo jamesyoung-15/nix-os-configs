@@ -70,6 +70,9 @@
       '';
     shellAliases = {
       playbongocatgif = "librewolf https://media.tenor.com/fYg91qBpDdgAAAAi/bongo-cat-transparent.gif";
+      yt-dlp-mp3 = "yt-dlp --extract-audio --audio-format mp3 --audio-quality 0";
+      cdprogproj = "cd ~/Programming/Programming-Projects";
+      cdprogpractice = "cd ~/Programming/Programming-Practice";
     };
   };
 
@@ -104,7 +107,7 @@
   # remove  x11 ssh ask pass gui thing: https://github.com/NixOS/nixpkgs/issues/24311
   programs.ssh.askPassword = "";
 
-
+  # START list of packages
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -178,12 +181,15 @@
     # pkgs.kdePackages.ark
     pkgs.keepassxc
     pkgs.syncthing
-    # pkgs.qbittorrent
+    # pkgs.qbittorrent # had to remove b/c install error, using flatpak for now
     # pkgs.kdePackages.merkuro
+    
+    # Disk utilities
     # pkgs.etcher
     pkgs.mediawriter
     pkgs.rpi-imager
     pkgs.krename
+    pkgs.ventoy-full
     
     
 
@@ -329,7 +335,7 @@
     pkgs.zoom-us
 
     # note-taking, diagrams, etc.
-    # pkgs.joplin-desktop
+    # pkgs.joplin-desktop # using flatpak for now as version is old
     # pkgs.logseq
     pkgs.silverbullet
     pkgs.drawio
@@ -361,6 +367,7 @@
     pkgs.signal-desktop-beta
 
   ];
+  # END list of packages
 
   # for mouse decoration on firefox/librewolf: https://discourse.nixos.org/t/firefox-does-not-use-kde-window-decorations-and-cursor/32132
   programs.dconf.enable = true;
@@ -403,6 +410,7 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
+  virtualisation.spiceUSBRedirection.enable = true; # enable usb redirection
 
   # List services that you want to enable:
 
