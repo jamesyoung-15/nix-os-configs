@@ -219,6 +219,8 @@
 
     # Programming Tools
     pkgs.hugo
+    pkgs.act # local github actions
+    pkgs.localstack # local aws stack
 
     # iac
     (pkgs.terraform.withPlugins(p: [ 
@@ -374,7 +376,9 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-
+  
+  # for piper
+  services.ratbagd.enable = true;
 
   # Fonts
   fonts.fontconfig.enable = true;
@@ -409,6 +413,7 @@
   programs.virt-manager.enable = true;
   services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
   virtualisation.spiceUSBRedirection.enable = true; # enable usb redirection
+  virtualisation.libvirtd.qemu.vhostUserPackages = [ pkgs.virtiofsd ];
 
   # List services that you want to enable:
 

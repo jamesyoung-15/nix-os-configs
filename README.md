@@ -67,6 +67,7 @@ Once changes have been applied manually setup panel, theming, shortcuts, widgets
 - IDE: VSCode
 - PDF Viewer: Okular
 - Image Viewer: Gwenview
+- VM: Virt-Manager (KVM/Qemu)
 - Gaming
   - Launchers: Steam, Lutris
   - Emulators: Cemu (Wii), Yuzu (Switch RIP), Ryujinx (Switch RIP), Suyu (Switch)
@@ -77,7 +78,7 @@ Once changes have been applied manually setup panel, theming, shortcuts, widgets
 - ePub: Calibre
 - Note-taking:
   - General: Joplin
-  - Drawing: R-Note (stylus), Excalidraw
+  - Drawing: Xournal++ (stylus), R-Note (stylus), Excalidraw
   - Diagrams: DrawIO, Excalidraw
 - Printing: CUPS
 - USB flashing: Balena Etcher
