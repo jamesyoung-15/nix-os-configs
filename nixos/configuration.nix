@@ -79,6 +79,9 @@
     shellAliases = {
       # dpi scaling
       cemu = "GDK_DPI_SCALE=1 cemu";
+      virt-manager = "GDK_DPI_SCALE=1 virt-manager";
+      libreoffice = "GDK_DPI_SCALE=1 libreoffice";
+      lutris = "GDK_DPI_SCALE=1 lutris";
       playbongocatgif = "librewolf https://media.tenor.com/fYg91qBpDdgAAAAi/bongo-cat-transparent.gif";
     };
   };
@@ -213,6 +216,8 @@
 
     # Programming Tools
     pkgs.hugo
+    pkgs.act # local github actions
+    pkgs.localstack # local aws stack
 
     # iac
     (pkgs.terraform.withPlugins(p: [ 
@@ -368,6 +373,9 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+
+  # for piper
+  services.ratbagd.enable = true;
 
   # Fonts
   fonts.fontconfig.enable = true;
