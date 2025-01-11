@@ -369,6 +369,23 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
+  # Fonts
+  fonts.fontconfig.enable = true;
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    roboto
+    nerdfonts
+    # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Hack" ]; })
+  ];
+
   # Steam Setup
   programs.steam = {
     enable = true;
@@ -384,6 +401,7 @@
   programs.virt-manager.enable = true;
   services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
   virtualisation.spiceUSBRedirection.enable = true; # enable usb redirection
+  virtualisation.libvirtd.qemu.vhostUserPackages = [ pkgs.virtiofsd ];
 
   # List services that you want to enable:
 
