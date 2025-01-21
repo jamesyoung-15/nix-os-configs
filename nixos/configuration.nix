@@ -249,6 +249,10 @@
     pkgs.pulumi-bin
     pkgs.opentofu
 
+    # databases
+    pkgs.mariadb
+    pkgs.sqlite
+
     # embedded systems tools
     pkgs.arduino
     pkgs.platformio
@@ -376,6 +380,16 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+
+  # PostgreSQL
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "mydatabase" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
   
   # for piper
   services.ratbagd.enable = true;
