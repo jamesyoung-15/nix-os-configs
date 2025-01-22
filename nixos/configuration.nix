@@ -254,6 +254,7 @@
 
     # databases
     pkgs.mariadb
+    pkgs.mysql-workbench
     pkgs.sqlite
 
     # embedded systems tools

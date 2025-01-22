@@ -64,6 +64,7 @@
     pkgs.phoronix-test-suite
     # cloud
     pkgs.awscli2
+    pkgs.scrcpy
 
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
@@ -144,6 +145,7 @@
 
     # databases
     pkgs.mariadb
+    pkgs.mysql-workbench
     pkgs.sqlite
 
     # embedded systems tools
