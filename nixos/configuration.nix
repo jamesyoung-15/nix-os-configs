@@ -144,6 +144,7 @@
     pkgs.btop
     pkgs.busybox
     pkgs.zip
+    pkgs.p7zip
     pkgs.nix-tree
     # sensor monitoring
     pkgs.lm_sensors
@@ -172,6 +173,7 @@
     pkgs.phoronix-test-suite
     # cloud
     pkgs.awscli2
+    pkgs.scrcpy
 
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
@@ -183,6 +185,7 @@
     pkgs.syncthing
     # pkgs.qbittorrent # had to remove b/c install error, using flatpak for now
     # pkgs.kdePackages.merkuro
+    pkgs.rustdesk
     
     # Disk utilities
     # pkgs.etcher

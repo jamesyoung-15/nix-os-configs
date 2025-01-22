@@ -35,6 +35,7 @@
     pkgs.btop
     pkgs.busybox
     pkgs.zip
+    pkgs.p7zip
     pkgs.nix-tree
     # sensor monitoring
     pkgs.lm_sensors
@@ -74,6 +75,7 @@
     pkgs.syncthing
     # pkgs.qbittorrent # had to remove b/c install error, using flatpak for now
     # pkgs.kdePackages.merkuro
+    pkgs.rustdesk
     
     # Disk utilities
     # pkgs.etcher
@@ -110,6 +112,8 @@
 
     # Programming Tools
     pkgs.hugo
+    pkgs.act # local github actions
+    pkgs.localstack # local aws stack
 
     # iac
     (pkgs.terraform.withPlugins(p: [ 
@@ -137,6 +141,10 @@
     pkgs.vault-bin
     pkgs.pulumi-bin
     pkgs.opentofu
+
+    # databases
+    pkgs.mariadb
+    pkgs.sqlite
 
     # embedded systems tools
     pkgs.arduino
