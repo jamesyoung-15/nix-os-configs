@@ -199,6 +199,7 @@
     pkgs.rustc
     pkgs.go
     pkgs.nodePackages_latest.nodejs
+    pkgs.nodePackages.serve
     (pkgs.python3.withPackages (python-pkgs: [
       python-pkgs.pip
       python-pkgs.flask
@@ -222,11 +223,13 @@
 
     # Programming Tools
     pkgs.hugo
+    pkgs.gh
     pkgs.act # local github actions
     pkgs.localstack # local aws stack
 
     # iac
-    (pkgs.terraform.withPlugins(p: [ 
+    (pkgs.terraform.withPlugins(p: [
+      p.archive 
       p.aws 
       p.hcloud
       p.azurerm
