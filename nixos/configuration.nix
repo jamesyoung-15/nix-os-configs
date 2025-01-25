@@ -137,6 +137,7 @@
     pkgs.rename
     # clipboard
     pkgs.wl-clipboard-rs
+    pkgs.file
 
     # cli utilities
     # process monitoring
@@ -256,8 +257,8 @@
     pkgs.opentofu
 
     # databases
-    pkgs.mariadb
-    pkgs.mysql-workbench
+    # pkgs.mysql-workbench
+    pkgs.dbeaver-bin
     pkgs.sqlite
 
     # embedded systems tools
@@ -396,6 +397,12 @@
       #type database  DBuser  auth-method
       local all       all     trust
     '';
+  };
+
+  # MySQL
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
   };
   
   # for piper

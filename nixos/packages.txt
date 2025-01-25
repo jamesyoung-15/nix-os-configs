@@ -28,6 +28,7 @@
     pkgs.rename
     # clipboard
     pkgs.wl-clipboard-rs
+    pkgs.file
 
     # cli utilities
     # process monitoring
@@ -119,7 +120,8 @@
     pkgs.localstack # local aws stack
 
     # iac
-    (pkgs.terraform.withPlugins(p: [ 
+    (pkgs.terraform.withPlugins(p: [
+      p.archive 
       p.aws 
       p.hcloud
       p.azurerm
@@ -146,8 +148,8 @@
     pkgs.opentofu
 
     # databases
-    pkgs.mariadb
-    pkgs.mysql-workbench
+    # pkgs.mysql-workbench
+    pkgs.dbeaver-bin
     pkgs.sqlite
 
     # embedded systems tools
