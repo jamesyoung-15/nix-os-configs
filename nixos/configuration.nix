@@ -85,7 +85,8 @@
 
   # keyboard
   i18n.inputMethod = {
-     enabled = "fcitx5";
+     enable = true;
+     type = "fcitx5";
      fcitx5.addons = with pkgs; [
        kdePackages.fcitx5-qt # fcitx5-gtk             # alternatively, kdePackages.fcitx5-qt
        fcitx5-chinese-addons  # table input method support
@@ -138,6 +139,7 @@
     # clipboard
     pkgs.wl-clipboard-rs
     pkgs.file
+    pkgs.kdePackages.dolphin-plugins
 
     # cli utilities
     # process monitoring
@@ -166,7 +168,6 @@
     pkgs.yt-dlp
     pkgs.mediainfo
     pkgs.ffmpeg-full
-    pkgs.mp3info
     # benchmarking
     pkgs.rt-tests
     pkgs.stress-ng
@@ -178,7 +179,7 @@
 
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
-    pkgs.gnome.gnome-disk-utility
+    pkgs.gnome-disk-utility
     pkgs.piper
     pkgs.polychromatic
     # pkgs.kdePackages.ark
@@ -203,17 +204,26 @@
     pkgs.nodePackages.serve
     (pkgs.python3.withPackages (python-pkgs: [
       python-pkgs.pip
-      python-pkgs.flask
-      python-pkgs.numpy
-      python-pkgs.fastapi
-      python-pkgs.pandas
-      python-pkgs.requests
       python-pkgs.ipykernel
-      python-pkgs.matplotlib
       python-pkgs.jupyter
-      python-pkgs.pillow
-      python-pkgs.pytest
+      # data/ml
+      python-pkgs.scipy
+      python-pkgs.seaborn
+      python-pkgs.numpy
+      python-pkgs.pandas
+      python-pkgs.matplotlib
+      python-pkgs.scikit-learn
+      # web scraping
       python-pkgs.selenium
+      python-pkgs.beautifulsoup4
+      # computer vision
+      python-pkgs.pillow
+      python-pkgs.opencv4
+      # dev
+      python-pkgs.flask
+      python-pkgs.fastapi
+      python-pkgs.requests
+      python-pkgs.pytest
     ]))
     pkgs.jupyter
     pkgs.typescript
@@ -376,7 +386,7 @@
 
     # social media
     pkgs.discord
-    pkgs.signal-desktop-beta
+    pkgs.signal-desktop
 
   ];
   # END list of packages
@@ -412,7 +422,7 @@
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
     fira-code
@@ -422,8 +432,9 @@
     proggyfonts
     roboto
     nerdfonts
-    # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Hack" ]; })
+    # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "0xProto" "RobotoMono" "JetBrainsMono" ]; })
   ];
+  # ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
 
   # Steam Setup
@@ -481,34 +492,9 @@
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
-  
-  # pipewire bluetooth support
-  environment.etc = {
-    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-      bluez_monitor.properties = {
-        ["bluez5.enable-sbc-xq"] = true,
-        ["bluez5.enable-msbc"] = true,
-        ["bluez5.enable-hw-volume"] = true,
-        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-      }
-    '';
-  };
 
   # open razer
   hardware.openrazer.enable = true; 
-
-  # Enable XDG Portal
-  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
-  xdg.portal.config.common.default = "*";
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-kde
-      xdg-desktop-portal-gtk
-    ];
-
-  };
-  # xdg.portal.enable = true;
 
   # Enable Flatpak
   services.flatpak.enable = true;
