@@ -29,6 +29,7 @@
     # clipboard
     pkgs.wl-clipboard-rs
     pkgs.file
+    pkgs.kdePackages.dolphin-plugins
 
     # cli utilities
     # process monitoring
@@ -49,6 +50,7 @@
     pkgs.tcpdump
     pkgs.speedtest-cli
     pkgs.wireguard-tools
+    pkgs.wireshark
     # multimedia
     pkgs.feh
     pkgs.gif-for-cli
@@ -57,7 +59,6 @@
     pkgs.yt-dlp
     pkgs.mediainfo
     pkgs.ffmpeg-full
-    pkgs.mp3info
     # benchmarking
     pkgs.rt-tests
     pkgs.stress-ng
@@ -69,7 +70,7 @@
 
     # gui utilities
     pkgs.kdePackages.kdeconnect-kde
-    pkgs.gnome.gnome-disk-utility
+    pkgs.gnome-disk-utility
     pkgs.piper
     pkgs.polychromatic
     # pkgs.kdePackages.ark
@@ -78,6 +79,9 @@
     # pkgs.qbittorrent # had to remove b/c install error, using flatpak for now
     # pkgs.kdePackages.merkuro
     pkgs.rustdesk
+    pkgs.spice
+    pkgs.spice-gtk
+    pkgs.virt-viewer
     
     # Disk utilities
     # pkgs.etcher
@@ -94,17 +98,33 @@
     pkgs.nodePackages.serve
     (pkgs.python3.withPackages (python-pkgs: [
       python-pkgs.pip
-      python-pkgs.flask
-      python-pkgs.numpy
-      python-pkgs.fastapi
-      python-pkgs.pandas
-      python-pkgs.requests
       python-pkgs.ipykernel
-      python-pkgs.matplotlib
       python-pkgs.jupyter
-      python-pkgs.pillow
-      python-pkgs.pytest
+      # data/ml
+      python-pkgs.scipy
+      python-pkgs.seaborn
+      python-pkgs.numpy
+      python-pkgs.pandas
+      python-pkgs.matplotlib
+      python-pkgs.scikit-learn
+      pkgs.python312Packages.polars
+      pkgs.python312Packages.onnx
+      pkgs.python312Packages.onnxruntime
+      pkgs.python312Packages.open-meteo
+      # web scraping
       python-pkgs.selenium
+      python-pkgs.beautifulsoup4
+      # computer vision
+      python-pkgs.pillow
+      python-pkgs.opencv4
+      # dev
+      python-pkgs.flask
+      python312Packages.flask-cors
+      python-pkgs.fastapi
+      python-pkgs.pytest
+      # networking
+      python-pkgs.requests
+      python-pkgs.dnspython
     ]))
     pkgs.jupyter
     pkgs.typescript
@@ -267,7 +287,7 @@
 
     # social media
     pkgs.discord
-    pkgs.signal-desktop-beta
+    pkgs.signal-desktop
 
   ];
   # END list of packages

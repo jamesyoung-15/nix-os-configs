@@ -160,6 +160,7 @@
     pkgs.tcpdump
     pkgs.speedtest-cli
     pkgs.wireguard-tools
+    pkgs.wireshark
     # multimedia
     pkgs.feh
     pkgs.gif-for-cli
@@ -188,6 +189,9 @@
     # pkgs.qbittorrent # had to remove b/c install error, using flatpak for now
     # pkgs.kdePackages.merkuro
     pkgs.rustdesk
+    pkgs.spice
+    pkgs.spice-gtk
+    pkgs.virt-viewer
     
     # Disk utilities
     # pkgs.etcher
@@ -213,6 +217,10 @@
       python-pkgs.pandas
       python-pkgs.matplotlib
       python-pkgs.scikit-learn
+      pkgs.python312Packages.polars
+      pkgs.python312Packages.onnx
+      pkgs.python312Packages.onnxruntime
+      pkgs.python312Packages.open-meteo
       # web scraping
       python-pkgs.selenium
       python-pkgs.beautifulsoup4
@@ -221,9 +229,12 @@
       python-pkgs.opencv4
       # dev
       python-pkgs.flask
+      python312Packages.flask-cors
       python-pkgs.fastapi
-      python-pkgs.requests
       python-pkgs.pytest
+      # networking
+      python-pkgs.requests
+      python-pkgs.dnspython
     ]))
     pkgs.jupyter
     pkgs.typescript
