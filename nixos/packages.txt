@@ -111,6 +111,7 @@
       pkgs.python312Packages.onnx
       pkgs.python312Packages.onnxruntime
       pkgs.python312Packages.open-meteo
+      pkgs.python312Packages.openai-whisper
       # web scraping
       python-pkgs.selenium
       python-pkgs.beautifulsoup4
