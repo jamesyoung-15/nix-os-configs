@@ -210,6 +210,7 @@
       python-pkgs.pip
       python-pkgs.ipykernel
       python-pkgs.jupyter
+      python312Packages.pylint
       # data/ml
       python-pkgs.scipy
       python-pkgs.seaborn
@@ -217,10 +218,8 @@
       python-pkgs.pandas
       python-pkgs.matplotlib
       python-pkgs.scikit-learn
-      pkgs.python312Packages.polars
       pkgs.python312Packages.onnx
       pkgs.python312Packages.onnxruntime
-      pkgs.python312Packages.open-meteo
       pkgs.python312Packages.openai-whisper
       # web scraping
       python-pkgs.selenium
@@ -230,7 +229,6 @@
       python-pkgs.opencv4
       # dev
       python-pkgs.flask
-      python312Packages.flask-cors
       python-pkgs.fastapi
       python-pkgs.pytest
       # networking
