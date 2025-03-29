@@ -147,6 +147,7 @@
     pkgs.btop
     pkgs.busybox
     pkgs.zip
+    pkgs.unrar
     pkgs.p7zip
     pkgs.nix-tree
     # sensor monitoring
